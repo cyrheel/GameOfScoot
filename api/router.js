@@ -4,8 +4,7 @@ const routeur = express.Router();
 
 // Routes
 routeur.get("/", (req, res) => {
-  console.log("GET /");
-  res.send("Hi");
+  res.send("Hi bitch");
 });
 
 export default routeur;
