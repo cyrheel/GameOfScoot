@@ -14,7 +14,7 @@ Base de données: Atlas MongoDB
 ORM: Mongoose
 API: REST
 Frontend: ReactJS
-Style Framework: ?
+Style Framework: Tailwind CSS
 
 2. User Stories
 
