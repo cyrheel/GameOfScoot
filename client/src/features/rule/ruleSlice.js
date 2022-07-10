@@ -5,7 +5,7 @@ const initialState = {
   nbOfPlayer: 2,
   isHard: false,
   allowRedo: false,
-  NbOfTry: 1,
+  nbOfTry: 1,
   targetWord: "SCOOT",
   letters: ["S", "C", "O", "O", "T"],
 };

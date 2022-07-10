@@ -4,32 +4,21 @@ import {
   handleName,
   handlePosition,
   handleRedo,
-  handleLetter,
-  handleStats,
-  selectPlayerS,
+  selectPlayer,
 } from "./playerSlice";
 
 const Player = () => {
   const dispatch = useDispatch();
-  const playerS = useSelector(selectPlayerS);
+  const player = useSelector(selectPlayer);
   const [playerNameValue, setplayerNameValue] = React.useState("");
   const [position, setPosition] = React.useState(1);
   const [redo, setRedo] = React.useState(false);
-  const [lettes, setLetters] = React.useState("");
-  const [stats, setStats] = React.useState({
-    nbDef: 0,
-    nbFailedDef: 0,
-    nbCopied: 0,
-    nbFailedTry: 0,
-    nbLetterGiven: 0,
-  });
 
   return (
     <form
       onSubmit={(e) => {
-        // TODO: send data to server
         e.preventDefault();
-        console.log(playerS);
+        console.log(player);
       }}
     >
       <label htmlFor="name">Player Name :</label>

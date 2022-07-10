@@ -9,8 +9,8 @@ import {
   handleTargetWord,
   handleLetters,
   selectRule,
-  selectLetters,
 } from "./ruleSlice";
+import { increment } from "../counter/counterSlice";
 
 const Rule = () => {
   const dispatch = useDispatch();
@@ -40,6 +40,7 @@ const Rule = () => {
     );
     if (response.ok) {
       console.log(response);
+      dispatch(increment());
     }
   };
 

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialStatePlayer = {
+const initialState = {
   playerName: "player1",
   position: 1,
   letter: "",
@@ -14,11 +14,9 @@ const initialStatePlayer = {
   },
 };
 
-const initialStatePlayers = [];
-
 export const playerSlice = createSlice({
   name: "player",
-  initialStatePlayer,
+  initialState,
   reducers: {
     handleName: (state, action) => {
       state.playerName = action.payload;
@@ -38,16 +36,6 @@ export const playerSlice = createSlice({
   },
 });
 
-export const playerSSlice = createSlice({
-  name: "playerS",
-  initialStatePlayers,
-  reducers: {
-    handleNewPlayer: (state, action) => {
-      state.playerS += action.payload;
-    },
-  },
-});
-
 export const {
   handleName,
   handlePosition,
@@ -56,8 +44,6 @@ export const {
   handleStats,
 } = playerSlice.actions;
 
-export const { handleNewPlayer } = playerSSlice.actions;
-
 export const selectPlayer = (state) => state.player;
 export const selectPlayerName = (state) => state.player.playerName;
 export const selectPosition = (state) => state.player.position;
@@ -65,7 +51,4 @@ export const selectLetters = (state) => state.player.letter;
 export const selectRedo = (state) => state.player.redo;
 export const selectStats = (state) => state.player.stats;
 
-export const selectPlayerS = (state) => state.playerS;
-
-export const playerReducer = playerSlice.reducer;
-export const playerSReducer = playerSSlice.reducer;
+export default playerSlice.reducer;
