@@ -11,9 +11,12 @@ import {
   selectRule,
 } from "./ruleSlice";
 import { increment } from "../counter/counterSlice";
+import ErrorMsg from "../../Components/ErrorMsg";
 
 const Rule = () => {
   const dispatch = useDispatch();
+  const [onError, setOnError] = React.useState(false);
+
   const rule = useSelector(selectRule);
   const [gameNameValue, setGameNameValue] = React.useState("");
   const [nbOfPlayers, setNbOfPlayers] = React.useState(2);
@@ -39,82 +42,89 @@ const Rule = () => {
       requestOptions
     );
     if (response.ok) {
-      console.log(response);
       dispatch(increment());
+    } else {
+      setOnError(!onError);
     }
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        // TODO: send data to server
-        e.preventDefault();
-        sendRules();
-      }}
-    >
-      <label htmlFor="name">Game Name :</label>
-      <input
-        type="text"
-        id="name"
-        onChange={(e) => {
-          setGameNameValue(e.target.value);
-          dispatch(handleName(e.target.value));
+    <div>
+      <div>
+        <h1>Rules</h1>
+      </div>
+      <form
+        onSubmit={(e) => {
+          // TODO: send data to server
+          e.preventDefault();
+          sendRules();
         }}
-        value={gameNameValue}
-      />
-      <label htmlFor="nop">Number Of Players</label>
-      <input
-        type="number"
-        id="nop"
-        onChange={(e) => {
-          setNbOfPlayers(e.target.value);
-          dispatch(handleNbOfPlayers(e.target.value));
-        }}
-        value={nbOfPlayers}
-      />
-      <label htmlFor="hard">Hard Mode</label>
-      <input
-        type="checkbox"
-        id="hard"
-        onChange={() => {
-          setIsHard(!isHard);
-          dispatch(handleIsHard(!isHard));
-        }}
-        value={isHard}
-      />
-      <label htmlFor="redo">Allow Redo</label>
-      <input
-        type="checkbox"
-        id="redo"
-        onChange={() => {
-          setAllowRedo(!allowRedo);
-          dispatch(handleAllowRedo(!allowRedo));
-        }}
-        value={allowRedo}
-      />
-      <label htmlFor="try">Number Of Try</label>
-      <input
-        type="number"
-        id="try"
-        onChange={(e) => {
-          setNbOfTry(e.target.value);
-          dispatch(handleNbOfTry(e.target.value));
-        }}
-        value={nbOfTry}
-      />
-      <label htmlFor="target">Target Word</label>
-      <input
-        type="text"
-        id="target"
-        onChange={(e) => {
-          setTargetWord(e.target.value);
-          dispatch(handleTargetWord(e.target.value));
-          dispatch(handleLetters(e.target.value));
-        }}
-        value={targetWord}
-      />
-      <button type="submit">{"Next Step ->"}</button>
-    </form>
+      >
+        {onError ? <ErrorMsg /> : <></>}
+        <label htmlFor="name">Game Name :</label>
+        <input
+          type="text"
+          id="name"
+          onChange={(e) => {
+            setGameNameValue(e.target.value);
+            dispatch(handleName(e.target.value));
+          }}
+          value={gameNameValue}
+        />
+        <label htmlFor="nop">Number Of Players</label>
+        <input
+          type="number"
+          id="nop"
+          onChange={(e) => {
+            setNbOfPlayers(e.target.value);
+            dispatch(handleNbOfPlayers(e.target.value));
+          }}
+          value={nbOfPlayers}
+        />
+        <label htmlFor="hard">Hard Mode</label>
+        <input
+          type="checkbox"
+          id="hard"
+          onChange={() => {
+            setIsHard(!isHard);
+            dispatch(handleIsHard(!isHard));
+          }}
+          value={isHard}
+        />
+        <label htmlFor="redo">Allow Redo</label>
+        <input
+          type="checkbox"
+          id="redo"
+          onChange={() => {
+            setAllowRedo(!allowRedo);
+            dispatch(handleAllowRedo(!allowRedo));
+          }}
+          value={allowRedo}
+        />
+        <label htmlFor="try">Number Of Try</label>
+        <input
+          type="number"
+          id="try"
+          onChange={(e) => {
+            setNbOfTry(e.target.value);
+            dispatch(handleNbOfTry(e.target.value));
+          }}
+          value={nbOfTry}
+        />
+        <label htmlFor="target">Target Word</label>
+        <input
+          type="text"
+          id="target"
+          onChange={(e) => {
+            setTargetWord(e.target.value);
+            dispatch(handleTargetWord(e.target.value));
+            dispatch(handleLetters(e.target.value));
+          }}
+          value={targetWord}
+        />
+        <button type="submit">{"Next Step ->"}</button>
+      </form>
+    </div>
   );
 };
 

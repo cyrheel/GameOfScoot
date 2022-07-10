@@ -15,46 +15,51 @@ const Player = () => {
   const [redo, setRedo] = React.useState(false);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        console.log(player);
-      }}
-    >
-      <label htmlFor="name">Player Name :</label>
-      <input
-        type="text"
-        id="name"
-        onChange={(e) => {
-          setplayerNameValue(e.target.value);
-          dispatch(handleName(e.target.value));
+    <div>
+      <div>
+        <h1>Player</h1>
+      </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log(player);
         }}
-        value={playerNameValue}
-      />
-      <label htmlFor="pos">Ordre de passage</label>
-      <input
-        type="number"
-        id="pos"
-        onChange={(e) => {
-          setPosition(e.target.value);
-          dispatch(handlePosition(e.target.value));
-        }}
-        value={position}
-      />
-      <label htmlFor="redo">Redo ?</label>
-      <input
-        type="checkbox"
-        id="redo"
-        onChange={() => {
-          setRedo(!redo);
-          dispatch(handleRedo(redo));
-        }}
-        value={redo}
-      />
-      <label htmlFor="redo">Allow Redo</label>
-      <button>Add a player</button>
-      <button type="submit">{"Next Step ->"}</button>
-    </form>
+      >
+        <label htmlFor="name">Player Name :</label>
+        <input
+          type="text"
+          id="name"
+          onChange={(e) => {
+            setplayerNameValue(e.target.value);
+            dispatch(handleName(e.target.value));
+          }}
+          value={playerNameValue}
+        />
+        <label htmlFor="pos">Ordre de passage</label>
+        <input
+          type="number"
+          id="pos"
+          onChange={(e) => {
+            setPosition(e.target.value);
+            dispatch(handlePosition(e.target.value));
+          }}
+          value={position}
+        />
+        <label htmlFor="redo">Redo ?</label>
+        <input
+          type="checkbox"
+          id="redo"
+          onChange={() => {
+            setRedo(!redo);
+            dispatch(handleRedo(redo));
+          }}
+          value={redo}
+        />
+        <label htmlFor="redo">Allow Redo</label>
+        <button>Add a player</button>
+        <button type="submit">{"Next Step ->"}</button>
+      </form>
+    </div>
   );
 };
 

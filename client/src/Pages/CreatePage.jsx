@@ -10,23 +10,16 @@ const CreatePage = () => {
   const count = useSelector(selectCount);
 
   const displayForms = (count) => {
-    switch (count) {
-      case 1:
-        return <Rule />;
-      case 2:
-        return <Player />;
-      case 3:
-        return <Rule />;
-      default:
-        return <Rule />;
+    if (count === 2) {
+      return <Player />;
     }
+    return <Rule />;
   };
 
   return (
     <div>
       <button onClick={() => navigate("/", { replace: true })}>{"<-"}</button>
       <h1>Create Game !</h1>
-      <h2>Define your rules</h2>
       {displayForms(count)}
     </div>
   );
