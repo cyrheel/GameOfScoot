@@ -1,10 +1,19 @@
 import express from "express";
+import GameController from "./controllers/GameController.js";
 
-const routeur = express.Router();
+const router = express.Router();
 
-// Routes
-routeur.get("/", (req, res) => {
-  res.send("Hi bitch");
-});
+// GET
+router.get("/api/game", GameController.getAllGames);
+router.get("/api/game/:id", GameController.getOneGame);
 
-export default routeur;
+// POST
+router.post("/api/game", GameController.createGame);
+
+// PATCH
+router.patch("/api/game/:id", GameController.updateGame);
+
+// DELETE
+// router.delete("/api/game/:id", GameController.deleteGame);
+
+export default router;

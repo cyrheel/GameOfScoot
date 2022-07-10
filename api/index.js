@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import bodyParser from "body-parser";
 import logger from "morgan";
 import router from "./router.js";
 import dotenv from "dotenv";
@@ -31,6 +32,7 @@ mongoose.connect(atlas_uri, options, (err) => {
 // Middleware
 app.use(logger("dev"));
 app.use(cors());
+app.use(bodyParser.json(), bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
 app.listen(port, () => console.log("server started on port " + port));
