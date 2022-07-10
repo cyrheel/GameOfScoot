@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Rules from "../features/rules/Rules";
+import Rule from "../features/rule/Rule";
 
 const CreatePage = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const CreatePage = () => {
       <button onClick={() => navigate("/", { replace: true })}>{"<-"}</button>
       <h1>Create Game !</h1>
       <h2>Define your rules</h2>
-      <Rules />
+      <Rule />
     </div>
   );
 };

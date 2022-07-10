@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const ruleSlice = createSlice({
-  name: "rules",
+  name: "rule",
   initialState,
   reducers: {
     handleName: (state, action) => {
@@ -48,13 +48,13 @@ export const {
   handleLetters,
 } = ruleSlice.actions;
 
-export const selectRules = (state) => state.rules;
-export const selectName = (state) => state.rules.gameName;
-export const selectNbOfPlayers = (state) => state.rules.nbOfPlayer;
-export const selectIsHard = (state) => state.rules.isHard;
-export const selectAllowRedo = (state) => state.rules.allowRedo;
-export const selectNbOfTry = (state) => state.rules.NbOfTry;
-export const selectTargetWord = (state) => state.rules.targetWord;
-export const selectLetters = (state) => state.rules.letters;
+export const selectRule = (state) => state.rule;
+export const selectName = (state) => state.rule.gameName;
+export const selectNbOfPlayers = (state) => state.rule.nbOfPlayer;
+export const selectIsHard = (state) => state.rule.isHard;
+export const selectAllowRedo = (state) => state.rule.allowRedo;
+export const selectNbOfTry = (state) => state.rule.NbOfTry;
+export const selectTargetWord = (state) => state.rule.targetWord;
+export const selectLetters = (state) => state.rule.letters;
 
 export default ruleSlice.reducer;

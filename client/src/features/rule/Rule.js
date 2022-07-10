@@ -8,12 +8,13 @@ import {
   handleNbOfTry,
   handleTargetWord,
   handleLetters,
-  selectRules,
-} from "./rulesSlice";
+  selectRule,
+  selectLetters,
+} from "./ruleSlice";
 
-const Rules = () => {
+const Rule = () => {
   const dispatch = useDispatch();
-  const rules = useSelector(selectRules);
+  const rule = useSelector(selectRule);
   const [gameNameValue, setGameNameValue] = React.useState("");
   const [nbOfPlayers, setNbOfPlayers] = React.useState(2);
   const [isHard, setIsHard] = React.useState(false);
@@ -23,12 +24,31 @@ const Rules = () => {
   // eslint-disable-next-line no-unused-vars
   const [targetWord, setTargetWord] = React.useState("SCOOT");
 
+  const sendRules = async () => {
+    const newRule = rule;
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newRule),
+    };
+
+    let response = await fetch(
+      "http://127.0.0.1:4000/api/rule",
+      requestOptions
+    );
+    if (response.ok) {
+      console.log(response);
+    }
+  };
+
   return (
     <form
       onSubmit={(e) => {
         // TODO: send data to server
         e.preventDefault();
-        console.log(rules);
+        sendRules();
       }}
     >
       <label htmlFor="name">Game Name :</label>
@@ -97,4 +117,4 @@ const Rules = () => {
   );
 };
 
-export default Rules;
+export default Rule;
