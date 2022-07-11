@@ -4,20 +4,26 @@ import {
   handleName,
   handlePosition,
   handleRedo,
+  resetPlayer,
   selectPlayer,
 } from "./playerSlice";
+import { selectNbOfPlayers } from "../../features/rule/ruleSlice";
+import { increment, selectCount } from "../counter/counterSlice";
+import { addPlayer } from "../players/playersSlice";
 
 const Player = () => {
   const dispatch = useDispatch();
   const player = useSelector(selectPlayer);
-  const [playerNameValue, setplayerNameValue] = React.useState("");
+  const count = useSelector(selectCount);
+  const nbOfPlayers = useSelector(selectNbOfPlayers);
+  const [playerName, setPlayerName] = React.useState("");
   const [position, setPosition] = React.useState(1);
   const [redo, setRedo] = React.useState(false);
 
   return (
     <div>
       <div>
-        <h1>Player</h1>
+        <h1>{`Player ${count} of ${nbOfPlayers}`}</h1>
       </div>
       <form
         onSubmit={(e) => {
@@ -30,10 +36,10 @@ const Player = () => {
           type="text"
           id="name"
           onChange={(e) => {
-            setplayerNameValue(e.target.value);
+            setPlayerName(e.target.value);
             dispatch(handleName(e.target.value));
           }}
-          value={playerNameValue}
+          value={playerName}
         />
         <label htmlFor="pos">Ordre de passage</label>
         <input
@@ -56,8 +62,18 @@ const Player = () => {
           value={redo}
         />
         <label htmlFor="redo">Allow Redo</label>
-        <button>Add a player</button>
-        <button type="submit">{"Next Step ->"}</button>
+        <button
+          onClick={() => {
+            dispatch(increment());
+            dispatch(addPlayer(player));
+            dispatch(resetPlayer());
+            setPlayerName("");
+            setPosition(1);
+            setRedo(false);
+          }}
+        >
+          Next
+        </button>
       </form>
     </div>
   );

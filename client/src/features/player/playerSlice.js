@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  playerName: "player1",
+  playerName: "",
   position: 1,
   letter: "",
   redo: false,
@@ -33,6 +33,9 @@ export const playerSlice = createSlice({
     handleStats: (state, action) => {
       state.stats = action.payload;
     },
+    resetPlayer: (state) => {
+      state = initialState;
+    },
   },
 });
 
@@ -42,6 +45,7 @@ export const {
   handleLetter,
   handleRedo,
   handleStats,
+  resetPlayer,
 } = playerSlice.actions;
 
 export const selectPlayer = (state) => state.player;
