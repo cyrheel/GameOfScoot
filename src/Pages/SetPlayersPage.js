@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import PlayersContext from "../context/PlayerContext";
 
 function SetPlayersPage() {
   const navigate = useNavigate();
-  const [players, setPlayers] = useState(["Player 1", "Player 2"]);
+  const {
+    players,
+    funcs: { setPlayers },
+  } = useContext(PlayersContext);
 
   return (
     <div>
@@ -12,7 +16,22 @@ function SetPlayersPage() {
       </button>
       <button
         onClick={() => {
-          const newPlayers = [...players, `Player ${players.length + 1}`];
+          const newPlayers = [
+            ...players,
+            {
+              name: `Player ${players.length + 1}`,
+              position: players.length + 1,
+              letter: "",
+              redo: false,
+              stats: {
+                nbDef: 0,
+                nbFailedDef: 0,
+                nbCopied: 0,
+                nbFailedTry: 0,
+                nbLetterGiven: 0,
+              },
+            },
+          ];
           setPlayers(newPlayers);
         }}
       >
@@ -23,11 +42,14 @@ function SetPlayersPage() {
           return (
             <div key={idx}>
               <input
-                placeholder={player}
+                placeholder={player.name}
                 onChange={(e) => {
                   const nextPlayers = players.map((p, i) => {
                     if (i === idx) {
-                      return e.target.value;
+                      return {
+                        ...p,
+                        name: e.target.value,
+                      };
                     }
                     return p;
                   });
@@ -47,7 +69,9 @@ function SetPlayersPage() {
           );
         })}
       </div>
-      <button>Play with this players</button>
+      <button onClick={() => navigate("/game", { replace: true })}>
+        Play with this players
+      </button>
     </div>
   );
 }
