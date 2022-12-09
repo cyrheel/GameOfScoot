@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export const initialState = {
+export const initialPlayers = {
   players: [
     {
       name: "Player 1",
@@ -29,14 +29,7 @@ export const initialState = {
       },
     },
   ],
-  funcs: {
-    setName: (name) => {},
-    setPosition: (position) => {},
-    setletters: (letters) => {},
-    setRedo: (redo) => {},
-    setStats: (stats) => {},
-    setPlayers: (players) => {},
-  },
+  setPlayers: (players) => {},
 };
 
-export default createContext(initialState);
+export default createContext(initialPlayers);

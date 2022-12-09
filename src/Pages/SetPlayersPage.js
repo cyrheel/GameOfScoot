@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import PlayersContext from "../context/PlayerContext";
+import PlayersContext from "../Context/PlayerContext";
 
 function SetPlayersPage() {
   const navigate = useNavigate();
-  const {
-    players,
-    funcs: { setPlayers },
-  } = useContext(PlayersContext);
+  const { players, setPlayers } = useContext(PlayersContext);
 
   return (
     <div>
