@@ -3,7 +3,7 @@ import { createContext } from "react";
 export const initialRules = {
   rules: {
     gameName: "Game of Scoot",
-    nbOfPlayers: 3,
+    nbOfPlayers: 2,
     isHard: false,
     allowRedo: false,
     nbOfTry: 2,
