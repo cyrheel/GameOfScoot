@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import style from "styled-components";
 
 import PlayersContext, { initialPlayers } from "../Context/PlayerContext";
-import RulesContext from "../Context/RulesContext";
+// import RulesContext from "../Context/RulesContext";
 import GameContext, { initialGame } from "../Context/GameContext";
 import GameInfo from "../Components/GameInfo";
 import RunGame from "../Components/RunGame";

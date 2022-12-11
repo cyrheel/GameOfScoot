@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import style from "styled-components";
 
 import PlayerContext from "../Context/PlayerContext";
@@ -54,6 +54,14 @@ function checkForActive(players, game) {
   }
   return false;
 }
+function checkForHasNotDef(players, game) {
+  for (const player of players) {
+    if (!player.hasDef && player.name !== game.currentPlayer.name) {
+      return true;
+    }
+  }
+  return false;
+}
 function nextLap(game, setGame, players, setPlayers, rules, currentResponse) {
   switch (game.currentAction) {
     case "copy": {
@@ -93,6 +101,7 @@ function nextLap(game, setGame, players, setPlayers, rules, currentResponse) {
                 letter:
                   game.currentPlayer.letter +
                   rules.targetWord[game.currentPlayer.letter.length],
+                isActive: false,
               };
             }
             return p;
@@ -119,6 +128,9 @@ function nextLap(game, setGame, players, setPlayers, rules, currentResponse) {
         }
       }
     }
+    case "redo": {
+      break;
+    }
     default: {
       if (currentResponse) {
         const nextGameOptions = incrementLap(
@@ -133,6 +145,7 @@ function nextLap(game, setGame, players, setPlayers, rules, currentResponse) {
             return {
               ...p,
               isActive: false,
+              hasDef: true,
             };
           }
           return p;
@@ -141,8 +154,18 @@ function nextLap(game, setGame, players, setPlayers, rules, currentResponse) {
         setGame(nextGameOptions);
         break;
       } else {
-        setGame(incrementLap(game, players));
-        break;
+        // if last to def, reset all to hasdef false
+        if (checkForHasNotDef(players, game)) {
+          const nextPlayers = players.map((p) => {
+            return { ...p, hasDef: false };
+          });
+          setPlayers(nextPlayers);
+          setGame(incrementLap(game, players));
+          break;
+        } else {
+          setGame(incrementLap(game, players));
+          break;
+        }
       }
     }
   }
@@ -153,6 +176,16 @@ function RunGame() {
   const { game, setGame } = useContext(GameContext);
   const { players, setPlayers } = useContext(PlayerContext);
   const { rules } = useContext(RulesContext);
+
+  useEffect(() => {
+    if (game.currentAction === "def" && game.currentPlayer?.hasDef) {
+      setGame({
+        ...game,
+        currentPlayerId: game.currentPlayerId + 1,
+        currentPlayer: players[game.currentPlayerId + 1],
+      });
+    }
+  }, [game, players, setGame]);
 
   if (game.currentPlayer?.letter === rules.targetWord) {
     return <p>End Game :/</p>;

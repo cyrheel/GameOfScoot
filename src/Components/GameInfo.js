@@ -39,6 +39,7 @@ function GameInfo() {
               <p>{p.name}</p>
               <p>{p.letter === "" ? "No letters" : p.letter}</p>
               <p>isActive {p.isActive.toString()}</p>
+              <p>hasDef {p.hasDef.toString()}</p>
             </PlayerDiv>
           );
         })}

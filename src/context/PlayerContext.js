@@ -8,6 +8,7 @@ export const initialPlayers = {
       letter: "",
       redo: false,
       isActive: true,
+      hasDef: false,
       stats: {
         nbDef: 0,
         nbFailedDef: 0,
@@ -22,6 +23,7 @@ export const initialPlayers = {
       letter: "",
       redo: false,
       isActive: true,
+      hasDef: false,
       stats: {
         nbDef: 0,
         nbFailedDef: 0,

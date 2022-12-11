@@ -45,6 +45,7 @@ function SetPlayersPage() {
                 letter: "",
                 redo: false,
                 isActive: true,
+                hasDef: false,
                 stats: {
                   nbDef: 0,
                   nbFailedDef: 0,
