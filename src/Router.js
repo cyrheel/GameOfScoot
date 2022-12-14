@@ -9,6 +9,7 @@ import HomePage from "./Pages/HomePage";
 import ChooseGamePage from "./Pages/ChooseGamePage";
 import SetPlayersPage from "./Pages/SetPlayersPage";
 import GamePage from "./Pages/GamePage";
+import Didacticiel from "./Pages/Didacticiel";
 
 function Router() {
   const [players, setPlayers] = useState(initialPlayers.players);
@@ -26,6 +27,7 @@ function Router() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/play" element={<ChooseGamePage />} />
+              <Route path="/didacticiel" element={<Didacticiel />} />
               <Route path="/set-players" element={<SetPlayersPage />} />
               <Route path="/game" element={<GamePage />} />
             </Routes>

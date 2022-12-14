@@ -25,11 +25,16 @@ function HomePage() {
   return (
     <PageWrapper>
       <ButtonWrapper>
-        <button onClick={() => navigate("/play", { replace: true })}>
+        <button id="play" onClick={() => navigate("/play", { replace: true })}>
           Play
         </button>
-        <button>Didacticiel</button>
-        <button>About</button>
+        <button
+          id="didact"
+          onClick={() => navigate("/didacticiel", { replace: true })}
+        >
+          Didacticiel
+        </button>
+        <button id="about">About</button>
       </ButtonWrapper>
     </PageWrapper>
   );

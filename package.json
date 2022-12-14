@@ -10,13 +10,16 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
+    "start-server-and-test": "^1.15.2",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "testing": "npx cypress open",
+    "cy:run": "cypress run",
+    "test": "start-server-and-test http://localhost:3000 cy:run",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -36,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^12.1.0"
   }
 }
