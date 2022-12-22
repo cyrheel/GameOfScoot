@@ -13,12 +13,12 @@ const StyledP = style.p`
 function Actions() {
   const { game } = useContext(GameContext);
   if (game.currentAction === "copy") {
-    return <StyledP>Le tricks a-t-il été copié ?</StyledP>;
+    return <StyledP id="copy">Le tricks a-t-il été copié ?</StyledP>;
   }
   if (game.currentAction === "redo") {
-    return <StyledP>Voulez vous utilisé votre pute ?</StyledP>;
+    return <StyledP id="redo">Voulez vous utilisé votre pute ?</StyledP>;
   }
-  return <StyledP>Le tricks a-t-il été définit ?</StyledP>;
+  return <StyledP id="def">Le tricks a-t-il été définit ?</StyledP>;
 }
 
 export default Actions;

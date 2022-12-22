@@ -38,6 +38,13 @@ function incrementLap(game, players) {
       currentPlayer: players[0],
     };
   } else {
+    if (game.currentAction === "copy" && !checkForActive(players, game)) {
+      return {
+        ...game,
+        currentPlayerId: 0,
+        currentPlayer: players[game.currentPlayerId + 1],
+      };
+    }
     return {
       ...game,
       lap: game.lap + 1,
@@ -193,12 +200,13 @@ function RunGame() {
   return (
     <GameContainer>
       <LapInfos>
-        <p>Tour n°{game.lap}</p>
-        <p>C'est le tour de {game.currentPlayer?.name}</p>
+        <p id="currentlap">Tour n°{game.lap}</p>
+        <p id="currentplayer">C'est le tour de {game.currentPlayer?.name}</p>
       </LapInfos>
       <Actions />
       <BtnContainer>
         <button
+          id="YES"
           onClick={() =>
             nextLap(game, setGame, players, setPlayers, rules, true)
           }
@@ -207,6 +215,7 @@ function RunGame() {
           Oui
         </button>
         <button
+          id="NO"
           onClick={() =>
             nextLap(game, setGame, players, setPlayers, rules, false)
           }

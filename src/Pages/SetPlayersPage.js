@@ -94,6 +94,7 @@ function SetPlayersPage() {
           })}
         </PlayerContainer>
         <button
+          id="playrn"
           onClick={() => {
             setGame({
               ...game,

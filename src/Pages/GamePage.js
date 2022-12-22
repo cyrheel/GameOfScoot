@@ -39,6 +39,7 @@ function GamePage() {
           {"<-"}
         </CustomBtn>
         <button
+          id="restartgame"
           onClick={() => {
             const nextPlayers = players.map((p, i) => {
               return {
