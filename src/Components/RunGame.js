@@ -55,7 +55,7 @@ function RunGame() {
   }, [game, players, rules.targetWord, setGame]);
 
   if (!game.isRunning) {
-    return <p>End Game :/</p>;
+    return <p id="endGame">End Game :/</p>;
   }
   return (
     <GameContainer>

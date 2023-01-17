@@ -3,7 +3,6 @@ function manageLetters(
   currResponse,
   currPlayerId,
   players,
-  setPlayers,
   game,
   rules
 ) {
@@ -13,7 +12,7 @@ function manageLetters(
         if (i === currPlayerId) {
           const nextLetters =
             game.currentPlayer.letter +
-            rules.targetWord[game.currentPlayer.letter.length];
+            rules.letters[game.currentPlayer.letter.length];
           return {
             ...p,
             letter: nextLetters,
@@ -21,8 +20,12 @@ function manageLetters(
         }
         return p;
       });
-      setPlayers(nextPlayers);
+      return nextPlayers;
+    } else {
+      return players;
     }
+  } else {
+    return players;
   }
 }
 

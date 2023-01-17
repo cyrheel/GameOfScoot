@@ -1,6 +1,6 @@
 import lastToPlay from "./lastToPlay";
 
-function setNextAction(currAction, currResponse, players, game) {
+function getNextAction(currAction, currResponse, players, game) {
   switch (currAction) {
     case "redo":
     case "copy": {
@@ -21,4 +21,4 @@ function setNextAction(currAction, currResponse, players, game) {
   }
 }
 
-export default setNextAction;
+export default getNextAction;

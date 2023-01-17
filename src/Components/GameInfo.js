@@ -31,27 +31,31 @@ function GameInfo() {
   const { rules } = useContext(RulesContext);
   const { game } = useContext(GameContext);
   return (
-    <GameInfoW>
-      <p>You are playing {rules.gameName}</p>
-      <p>Score Board</p>
-      <PlayerContainer>
-        {players.map((p, i) => {
-          return (
-            <PlayerDiv key={i}>
-              <p id={`name${i}`}>{p.name}</p>
-              <p id={`letter${i}`}>
-                {p.letter === "" ? "No letters" : p.letter}
-              </p>
-              <p id={`isActive${i}`}>isActive {p.isActive.toString()}</p>
-              <p id={`hasDef${i}`}>hasDef {p.hasDef.toString()}</p>
-            </PlayerDiv>
-          );
-        })}
-      </PlayerContainer>
-      <p>{game.currentPlayerId}</p>
-      <p>{game.currentPlayer?.name}</p>
-      <p>{game.currentAction}</p>
-    </GameInfoW>
+    <>
+      <GameInfoW>
+        <p>You are playing {rules.gameName}</p>
+        <p>Score Board</p>
+        <PlayerContainer>
+          {players.map((p, i) => {
+            return (
+              <PlayerDiv key={i}>
+                <p id={`name${i}`}>{p.name}</p>
+                <p id={`letter${i}`}>
+                  {p.letter === "" ? "No letters" : p.letter}
+                </p>
+                <p id={`isActive${i}`}>isActive {p.isActive.toString()}</p>
+                <p id={`hasDef${i}`}>hasDef {p.hasDef.toString()}</p>
+              </PlayerDiv>
+            );
+          })}
+        </PlayerContainer>
+      </GameInfoW>
+      <div style={{ display: "flex" }}>
+        <p>{game.currentPlayerId}</p>
+        <p>{game.currentPlayer?.name}</p>
+        <p>{game.currentAction}</p>
+      </div>
+    </>
   );
 }
 export default GameInfo;
