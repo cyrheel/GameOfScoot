@@ -1,4 +1,4 @@
-import lastToPlay from "./lastToPlay";
+import lastToPlay from "./lastToPlay.js";
 
 function getNextAction(currAction, currResponse, players, game) {
   switch (currAction) {

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import style from "styled-components";
 
-import PlayerContext from "../Context/PlayerContext";
-import RulesContext from "../Context/RulesContext";
-import GameContext from "../Context/GameContext";
+import PlayerContext from "../Context/PlayerContext.js";
+import RulesContext from "../Context/RulesContext.js";
+// import GameContext from "../Context/GameContext.js";
 
 const GameInfoW = style.div`
   display: flex;
@@ -29,7 +29,7 @@ const PlayerDiv = style.div`
 function GameInfo() {
   const { players } = useContext(PlayerContext);
   const { rules } = useContext(RulesContext);
-  const { game } = useContext(GameContext);
+  // const { game } = useContext(GameContext);
   return (
     <>
       <GameInfoW>
@@ -43,18 +43,11 @@ function GameInfo() {
                 <p id={`letter${i}`}>
                   {p.letter === "" ? "No letters" : p.letter}
                 </p>
-                <p id={`isActive${i}`}>isActive {p.isActive.toString()}</p>
-                <p id={`hasDef${i}`}>hasDef {p.hasDef.toString()}</p>
               </PlayerDiv>
             );
           })}
         </PlayerContainer>
       </GameInfoW>
-      <div style={{ display: "flex" }}>
-        <p>{game.currentPlayerId}</p>
-        <p>{game.currentPlayer?.name}</p>
-        <p>{game.currentAction}</p>
-      </div>
     </>
   );
 }

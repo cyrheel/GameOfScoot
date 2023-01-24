@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "styled-components";
 
-import GameContext from "../Context/GameContext";
-import PlayersContext from "../Context/PlayerContext";
-import { PageWrapper, Header, CustomBtn } from "../Style/style";
+import GameContext from "../Context/GameContext.js";
+import PlayersContext from "../Context/PlayerContext.js";
+import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
 
 const Body = style.div`
   display: flex;

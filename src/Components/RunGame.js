@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import style from "styled-components";
 
-import nextLap from "../Algos/nextLap";
-import PlayerContext from "../Context/PlayerContext";
-import RulesContext from "../Context/RulesContext";
-import GameContext from "../Context/GameContext";
+import nextLap from "../Algos/nextLap.js";
+import PlayerContext from "../Context/PlayerContext.js";
+import RulesContext from "../Context/RulesContext.js";
+import GameContext from "../Context/GameContext.js";
 
-import Actions from "./Actions";
+import Actions from "./Actions.js";
 
 // Const
 const GameContainer = style.div`

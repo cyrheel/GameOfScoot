@@ -8,7 +8,6 @@ export const initialRules = {
     allowRedo: false,
     nbOfTry: 2,
     targetWord: "SCOOT",
-    letters: ["S", "C", "O", "O", "T"],
   },
   customRules: {},
   setRules: (rules) => {},

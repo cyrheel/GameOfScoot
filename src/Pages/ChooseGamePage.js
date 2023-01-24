@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import style from "styled-components";
 
-import { PageWrapper, Header } from "../Style/style";
+import { PageWrapper, Header } from "../Style/style.js";
 
 const ButtonWrapper = style.div`
   display: flex;

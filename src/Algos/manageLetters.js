@@ -12,7 +12,7 @@ function manageLetters(
         if (i === currPlayerId) {
           const nextLetters =
             game.currentPlayer.letter +
-            rules.letters[game.currentPlayer.letter.length];
+            rules.targetWord[game.currentPlayer.letter.length];
           return {
             ...p,
             letter: nextLetters,

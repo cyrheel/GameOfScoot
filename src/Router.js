@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import PlayersContext, { initialPlayers } from "./Context/PlayerContext";
-import RulesContext, { initialRules } from "./Context/RulesContext";
-import GameContext, { initialGame } from "./Context/GameContext";
+import PlayersContext, { initialPlayers } from "./Context/PlayerContext.js";
+import RulesContext, { initialRules } from "./Context/RulesContext.js";
+import GameContext, { initialGame } from "./Context/GameContext.js";
 
-import HomePage from "./Pages/HomePage";
-import ChooseGamePage from "./Pages/ChooseGamePage";
-import SetPlayersPage from "./Pages/SetPlayersPage";
-import GamePage from "./Pages/GamePage";
-import Didacticiel from "./Pages/Didacticiel";
+import HomePage from "./Pages/HomePage.js";
+import ChooseGamePage from "./Pages/ChooseGamePage.js";
+import SetPlayersPage from "./Pages/SetPlayersPage.js";
+import GamePage from "./Pages/GamePage.js";
+import Didacticiel from "./Pages/Didacticiel.js";
 
 function Router() {
   const [players, setPlayers] = useState(initialPlayers.players);

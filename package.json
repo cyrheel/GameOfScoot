@@ -19,8 +19,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "npx mocha --reporter spec",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "mocha": "npx mocha --reporter spec",
+    "dev-test-e2e": "npx cypress open",
+    "cy:run": "cypress run",
+    "test": "start-server-and-test http://localhost:3000 cy:run"
   },
   "eslintConfig": {
     "extends": [

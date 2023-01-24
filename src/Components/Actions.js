@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import style from "styled-components";
 
-import GameContext from "../Context/GameContext";
+import GameContext from "../Context/GameContext.js";
 
 const StyledP = style.p`
   display: flex;
