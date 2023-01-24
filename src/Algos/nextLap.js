@@ -21,7 +21,12 @@ function nextLap(game, setGame, players, setPlayers, rules, currResponse) {
     players,
     game
   );
-  const { player, idx } = getNextPlayer(nextAction, letteredPlayers, game);
+  const { player, idx } = getNextPlayer(
+    nextAction,
+    letteredPlayers,
+    game,
+    definer
+  );
   const nextGameOptions = {
     ...game,
     ...(nextAction === "def" ? { defIdx: idx } : { copyIdx: idx }),

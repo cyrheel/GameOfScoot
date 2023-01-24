@@ -1,5 +1,5 @@
-function getNextPlayer(nextAction, nextPlayers, game) {
-  const { defIdx, copyIdx } = game;
+function getNextPlayer(nextAction, nextPlayers, game, definer) {
+  const { defIdx, copyIdx, currentPlayerId } = game;
   switch (nextAction) {
     case "redo":
     case "copy": {
@@ -7,14 +7,15 @@ function getNextPlayer(nextAction, nextPlayers, game) {
         return { player: nextPlayers[0], idx: 0 };
       } else {
         // if current is definer do +2 and if +2 is no one do firstone etc
-        if (game.currentDefinerId === copyIdx) {
+        if (definer && definer === currentPlayerId) {
           if (copyIdx + 2 >= game.totalPlayer - 1) {
             return { player: nextPlayers[0], idx: 0 };
           } else {
             return { player: nextPlayers[copyIdx + 2], idx: copyIdx + 2 };
           }
+        } else {
+          return { player: nextPlayers[copyIdx + 1], idx: copyIdx + 1 };
         }
-        return { player: nextPlayers[copyIdx + 1], idx: copyIdx + 1 };
       }
     }
     default: {
