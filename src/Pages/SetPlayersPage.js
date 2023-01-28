@@ -57,6 +57,7 @@ function SetPlayersPage() {
             ];
             setPlayers(newPlayers);
           }}
+          id="addPlayer"
           style={{ width: "25%" }}
         >
           Add Player
