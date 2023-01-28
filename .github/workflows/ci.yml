@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu:latest
     steps:
       - name: Cypress
-      - uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v2
