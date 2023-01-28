@@ -8,5 +8,7 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v2
       - name: Cypress
         uses: cypress-io/github-action@v2
