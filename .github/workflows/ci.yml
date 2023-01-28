@@ -11,4 +11,4 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Cypress
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5
