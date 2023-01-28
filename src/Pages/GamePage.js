@@ -2,12 +2,12 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "styled-components";
 
-import PlayersContext, { initialPlayers } from "../Context/PlayerContext";
-// import RulesContext from "../Context/RulesContext";
-import GameContext, { initialGame } from "../Context/GameContext";
-import GameInfo from "../Components/GameInfo";
-import RunGame from "../Components/RunGame";
-import { PageWrapper, Header, CustomBtn } from "../Style/style";
+import PlayersContext, { initialPlayers } from "../Context/PlayerContext.js";
+// import RulesContext from "../Context/RulesContext.js";
+import GameContext, { initialGame } from "../Context/GameContext.js";
+import GameInfo from "../Components/GameInfo.js";
+import RunGame from "../Components/RunGame.js";
+import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
 
 const InfoWrapper = style.div`
   display: flex;
@@ -35,10 +35,14 @@ function GamePage() {
   return (
     <PageWrapper>
       <Header>
-        <CustomBtn onClick={() => navigate("/set-players", { replace: true })}>
+        <CustomBtn
+          id="goback"
+          onClick={() => navigate("/set-players", { replace: true })}
+        >
           {"<-"}
         </CustomBtn>
         <button
+          id="restartgame"
           onClick={() => {
             const nextPlayers = players.map((p, i) => {
               return {
