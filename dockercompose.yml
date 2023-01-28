@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    container_name: ReactApp
+    restart: always
+    image: cyrheel/goo
+    ports: 
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - static-files-prod:/GOO/build
+
+volumes:
+  static-files-prod:
