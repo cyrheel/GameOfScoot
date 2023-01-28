@@ -6,7 +6,7 @@ on:
 
 jobs:
   CI:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
       - name: Cypress
         uses: cypress-io/github-action@v2
