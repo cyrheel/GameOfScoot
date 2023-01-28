@@ -13,8 +13,8 @@ jobs:
       - name: Cypress
         uses: cypress-io/github-action@v5
           with:
-          build: npm run build
-          start: npx serve build
-          browser: chrome
+            build: npm run build
+            start: npx serve build
+            browser: chrome
 
 
