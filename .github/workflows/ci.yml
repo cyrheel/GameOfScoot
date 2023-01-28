@@ -12,11 +12,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Cypress
         uses: cypress-io/github-action@v5
-          with:
-            build: npm run build
-            start: npx serve build
-            wait-on: 'http://localhost:3000'
-            wait-on-timeout: 120
-            browser: chrome
-
-
+        with:
+          build: npm run build
+          start: npx serve build
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 120
+          browser: chrome
