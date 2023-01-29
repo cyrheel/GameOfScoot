@@ -1,0 +1,14 @@
+name: CD
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  CD:
+    steps:
+      - name: DigitalOcean App Platform deployment
+        uses: digitalocean/app_action@main
+        with:
+          app_name: goo
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
