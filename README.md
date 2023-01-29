@@ -1,15 +1,21 @@
 Nothing to show rn, prototype is comming...
 
+Idea :
+
+This app aim to be the best game of out manager, for as many people to participate as you want.
+
 Technos:
 
 - NodeJS
 - ReactJS
 - Styled-components
 - Mocha
+- Cypress
 
-Idea :
+Prod:
 
-This app aim to be the best game of out manager, for as many people to participate as you want.
+- Hosted to https://goo.software by DigitalOcean
+- DomainName by Name.com
 
 How To Run Prod In Local:
 
