@@ -1,11 +1,9 @@
-import lastToPlay from "./lastToPlay.js";
-
-function getNextAction(currAction, currResponse, players, game) {
-  switch (currAction) {
+function getNextAction(players, game, currResponse) {
+  switch (game.currentAction) {
     case "redo":
     case "copy": {
       // If there still someone active stay on copy else go back to define
-      if (lastToPlay(players, game)) {
+      if (game.copyIdx >= players.length - 1) {
         return "def";
       } else {
         return "copy";

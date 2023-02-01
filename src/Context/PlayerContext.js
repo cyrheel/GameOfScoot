@@ -3,6 +3,7 @@ import { createContext } from "react";
 export const initialPlayers = {
   players: [
     {
+      id: 0,
       name: "Player 1",
       position: 1,
       letter: "",
@@ -16,6 +17,7 @@ export const initialPlayers = {
       },
     },
     {
+      id: 1,
       name: "Player 2",
       position: 2,
       letter: "",

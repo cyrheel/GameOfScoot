@@ -5,32 +5,20 @@ import getNextAction from "./getNextAction.js";
 import getNextPlayer from "./getNextPlayer.js";
 
 function nextLap(game, setGame, players, setPlayers, rules, currResponse) {
-  const definer = getDefiner(game, currResponse);
-  const letteredPlayers = manageLetters(
-    game.currentAction,
-    currResponse,
-    game.currentPlayerId,
-    players,
-    game,
-    rules
-  );
+  const letteredPlayers = manageLetters(players, game, rules, currResponse);
 
+  const definer = getDefiner(game, currResponse);
   const nextAction = getNextAction(
     game.currentAction,
     currResponse,
     players,
     game
   );
-  const { player, idx } = getNextPlayer(
-    nextAction,
-    letteredPlayers,
-    game,
-    definer
-  );
+  const idx = getNextPlayer(nextAction, game, definer);
+
   const nextGameOptions = {
     ...game,
     ...(nextAction === "def" ? { defIdx: idx } : { copyIdx: idx }),
-    currentPlayer: player,
     currentPlayerId: idx,
     currentAction: nextAction,
     ...(definer !== null && { currentDefinerId: definer }),
