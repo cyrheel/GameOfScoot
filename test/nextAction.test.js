@@ -29,7 +29,7 @@ describe("getNextAction()", () => {
       const currResponse = false;
       const game = {
         currentAction: "copy",
-        copyIdx: 1,
+        currentPlayerId: 1,
       };
       const result = getNextAction(players2, game, currResponse);
       expector(result).to.equal("copy");
@@ -39,9 +39,41 @@ describe("getNextAction()", () => {
       const currResponse = false;
       const game = {
         currentAction: "copy",
-        copyIdx: 2,
+        currentPlayerId: 0,
       };
-      const result = getNextAction(players2, game, currResponse);
+      const players = [
+        {
+          id: 0,
+          name: "Player 1",
+          position: 1,
+          letter: "",
+          redo: false,
+          isActive: true,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 1,
+          name: "Player 2",
+          position: 2,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+      ];
+      const result = getNextAction(players, game, currResponse);
       expector(result).to.equal("def");
     });
 
@@ -49,19 +81,51 @@ describe("getNextAction()", () => {
       const currResponse = true;
       const game = {
         currentAction: "copy",
-        copyIdx: 0,
+        currentPlayerId: 0,
       };
       const result = getNextAction(players2, game, currResponse);
-      expector(result).to.equal("def");
+      expector(result).to.equal("copy");
     });
 
     it("currAction = copy, res = true, lastToPlay", () => {
       const currResponse = true;
       const game = {
         currentAction: "copy",
-        copyIdx: 2,
+        currentPlayerId: 1,
       };
-      const result = getNextAction(players2, game, currResponse);
+      const players = [
+        {
+          id: 0,
+          name: "Player 1",
+          position: 1,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 1,
+          name: "Player 2",
+          position: 2,
+          letter: "",
+          redo: false,
+          isActive: true,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+      ];
+      const result = getNextAction(players, game, currResponse);
       expector(result).to.equal("def");
     });
   });
@@ -89,7 +153,7 @@ describe("getNextAction()", () => {
       const currResponse = false;
       const game = {
         currentAction: "copy",
-        copyIdx: 2,
+        currentPlayerId: 2,
       };
       const result = getNextAction(playersMulti, game, currResponse);
       expector(result).to.equal("copy");
@@ -99,9 +163,71 @@ describe("getNextAction()", () => {
       const currResponse = false;
       const game = {
         currentAction: "copy",
-        copyIdx: 3,
+        currentPlayerId: 2,
       };
-      const result = getNextAction(playersMulti, game, currResponse);
+      const players = [
+        {
+          id: 0,
+          name: "Player 1",
+          position: 1,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 1,
+          name: "Player 2",
+          position: 2,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 2,
+          name: "Player 3",
+          position: 3,
+          letter: "",
+          redo: false,
+          isActive: true,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 3,
+          name: "Player 4",
+          position: 4,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+      ];
+      const result = getNextAction(players, game, currResponse);
       expector(result).to.equal("def");
     });
 
@@ -109,19 +235,143 @@ describe("getNextAction()", () => {
       const currResponse = true;
       const game = {
         currentAction: "copy",
-        copyIdx: 0,
+        currentPlayerId: 2,
       };
-      const result = getNextAction(playersMulti, game, currResponse);
-      expector(result).to.equal("def");
+      const players = [
+        {
+          id: 0,
+          name: "Player 1",
+          position: 1,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 1,
+          name: "Player 2",
+          position: 2,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 2,
+          name: "Player 3",
+          position: 3,
+          letter: "",
+          redo: false,
+          isActive: true,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 3,
+          name: "Player 4",
+          position: 4,
+          letter: "",
+          redo: false,
+          isActive: true,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+      ];
+      const result = getNextAction(players, game, currResponse);
+      expector(result).to.equal("copy");
     });
 
     it("currAction = copy, res = true, lastToPlay", () => {
       const currResponse = true;
       const game = {
         currentAction: "copy",
-        copyIdx: 3,
+        currentPlayerId: 3,
       };
-      const result = getNextAction(playersMulti, game, currResponse);
+      const players = [
+        {
+          id: 0,
+          name: "Player 1",
+          position: 1,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 1,
+          name: "Player 2",
+          position: 2,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 2,
+          name: "Player 3",
+          position: 3,
+          letter: "",
+          redo: false,
+          isActive: false,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 3,
+          name: "Player 4",
+          position: 4,
+          letter: "",
+          redo: false,
+          isActive: true,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+      ];
+      const result = getNextAction(players, game, currResponse);
       expector(result).to.equal("def");
     });
   });

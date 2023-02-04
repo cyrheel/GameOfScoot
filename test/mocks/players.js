@@ -5,6 +5,7 @@ export const players2 = [
     position: 1,
     letter: "",
     redo: false,
+    isActive: true,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,
@@ -19,6 +20,7 @@ export const players2 = [
     position: 2,
     letter: "",
     redo: false,
+    isActive: true,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,
@@ -36,6 +38,7 @@ export const playersMulti = [
     position: 1,
     letter: "",
     redo: false,
+    isActive: true,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,
@@ -50,6 +53,7 @@ export const playersMulti = [
     position: 2,
     letter: "",
     redo: false,
+    isActive: true,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,
@@ -64,6 +68,7 @@ export const playersMulti = [
     position: 3,
     letter: "",
     redo: false,
+    isActive: true,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,
@@ -78,6 +83,7 @@ export const playersMulti = [
     position: 4,
     letter: "",
     redo: false,
+    isActive: true,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,

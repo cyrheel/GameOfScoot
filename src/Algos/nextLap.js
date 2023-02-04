@@ -1,19 +1,14 @@
 import incrementLap from "./incrementLap.js";
 import manageLetters from "./manageLetters.js";
+import manageStatus from "./manageStatus.js";
 import getDefiner from "./getDefiner.js";
 import getNextAction from "./getNextAction.js";
 import getNextPlayer from "./getNextPlayer.js";
 
 function nextLap(game, setGame, players, setPlayers, rules, currResponse) {
-  const letteredPlayers = manageLetters(players, game, rules, currResponse);
-
+  // Game
   const definer = getDefiner(game, currResponse);
-  const nextAction = getNextAction(
-    game.currentAction,
-    currResponse,
-    players,
-    game
-  );
+  const nextAction = getNextAction(players, game, currResponse);
   const idx = getNextPlayer(nextAction, game, definer);
 
   const nextGameOptions = {
@@ -24,7 +19,17 @@ function nextLap(game, setGame, players, setPlayers, rules, currResponse) {
     ...(definer !== null && { currentDefinerId: definer }),
   };
 
-  setPlayers(letteredPlayers);
+  // Players
+  const statuedPlayers = manageStatus(players, game, definer);
+  const letteredStatuedPlayers = manageLetters(
+    statuedPlayers,
+    game,
+    rules,
+    currResponse
+  );
+
+  // Set next lap
+  setPlayers(letteredStatuedPlayers);
   setGame(incrementLap(nextGameOptions));
 }
 

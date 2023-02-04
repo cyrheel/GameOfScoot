@@ -44,6 +44,7 @@ describe("manageLetters()", () => {
           position: 1,
           letter: "",
           redo: false,
+          isActive: true,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -58,6 +59,7 @@ describe("manageLetters()", () => {
           position: 2,
           letter: "S",
           redo: false,
+          isActive: true,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
