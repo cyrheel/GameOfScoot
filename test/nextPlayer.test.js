@@ -86,6 +86,19 @@ describe("getNextPlayer()", () => {
       expector(result).to.equal(0);
     });
 
+    it("should select first player when definer is in middle of the list", () => {
+      const definer = 1;
+      const nextAction = "copy";
+      const game = {
+        defIdx: 1,
+        copyIdx: 0,
+        currentAction: "def",
+        currentDefinerId: null,
+      };
+      const result = getNextPlayer(nextAction, game, definer, 6);
+      expector(result).to.equal(0);
+    });
+
     it("should increment copyIdx when nextAction is copy and not lastToPlay", () => {
       const definer = null;
       const nextAction = "copy";
