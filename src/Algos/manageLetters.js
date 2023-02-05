@@ -1,24 +1,18 @@
-function manageLetters(
-  currAction,
-  currResponse,
-  currPlayerId,
-  players,
-  game,
-  rules
-) {
-  if (currAction === "copy") {
+function manageLetters(players, game, rules, currResponse) {
+  const { currentAction, currentPlayerId } = game;
+  if (currentAction === "copy") {
     if (!currResponse) {
       const nextPlayers = players.map((p, i) => {
-        if (i === currPlayerId) {
+        if (i === currentPlayerId) {
           const nextLetters =
-            game.currentPlayer.letter +
-            rules.targetWord[game.currentPlayer.letter.length];
+            players[i].letter + rules.targetWord[players[i].letter.length];
           return {
             ...p,
             letter: nextLetters,
           };
+        } else {
+          return p;
         }
-        return p;
       });
       return nextPlayers;
     } else {

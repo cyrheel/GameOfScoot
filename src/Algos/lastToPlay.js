@@ -1,14 +1,15 @@
 function lastToPlay(players, game) {
   // return false is there is another player active than current
   const playersWithoutCurr = players.filter(
-    (el) => el.name !== game.currentPlayer.name
+    (el) => el.name !== players[game.currentPlayerId].name
   );
+  let stillActive = 0;
   for (const player of playersWithoutCurr) {
     if (player.isActive) {
-      return false;
+      stillActive++;
     }
   }
-  return true;
+  return stillActive ? false : true;
 }
 
 export default lastToPlay;

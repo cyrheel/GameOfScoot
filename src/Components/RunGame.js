@@ -35,17 +35,6 @@ function RunGame() {
   const { players, setPlayers } = useContext(PlayerContext);
   const { rules } = useContext(RulesContext);
 
-  // TODO: remove this sh*t
-  // useEffect(() => {
-  //   if (game.currentAction === "def" && game.currentPlayer?.hasDef) {
-  //     setGame({
-  //       ...game,
-  //       currentPlayerId: game.currentPlayerId + 1,
-  //       currentPlayer: players[game.currentPlayerId + 1],
-  //     });
-  //   }
-  // }, [game, players, setGame]);
-
   useEffect(() => {
     for (const player of players) {
       if (player.letter === rules.targetWord) {
@@ -61,7 +50,9 @@ function RunGame() {
     <GameContainer>
       <LapInfos>
         <p id="currentlap">Tour n°{game.lap}</p>
-        <p id="currentplayer">C'est le tour de {game.currentPlayer?.name}</p>
+        <p id="currentplayer">
+          C'est le tour de {players[game.currentPlayerId].name}
+        </p>
       </LapInfos>
       <Actions />
       <BtnContainer>

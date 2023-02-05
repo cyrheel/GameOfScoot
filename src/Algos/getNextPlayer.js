@@ -1,28 +1,28 @@
-function getNextPlayer(nextAction, nextPlayers, game, definer) {
-  const { defIdx, copyIdx, currentPlayerId } = game;
+function getNextPlayer(nextAction, game, definer, totalPlayer) {
+  // it return the id of the next player
+  const { defIdx, copyIdx, currentAction, currentDefinerId } = game;
   switch (nextAction) {
     case "redo":
     case "copy": {
-      if (copyIdx === game.totalPlayer - 1) {
-        return { player: nextPlayers[0], idx: 0 };
-      } else {
-        // if current is definer do +2 and if +2 is no one do firstone etc
-        if (definer && definer === currentPlayerId) {
-          if (copyIdx + 2 >= game.totalPlayer - 1) {
-            return { player: nextPlayers[0], idx: 0 };
-          } else {
-            return { player: nextPlayers[copyIdx + 2], idx: copyIdx + 2 };
-          }
+      if (copyIdx + 1 === currentDefinerId || copyIdx + 1 === definer) {
+        if (definer || copyIdx + 2 > totalPlayer - 1) {
+          return definer === 0 ? 1 : 0;
         } else {
-          return { player: nextPlayers[copyIdx + 1], idx: copyIdx + 1 };
+          return copyIdx + 2;
+        }
+      } else {
+        if (currentAction === "def") {
+          return definer === 0 ? 1 : 0;
+        } else {
+          return copyIdx + 1;
         }
       }
     }
     default: {
-      if (defIdx === game.totalPlayer - 1) {
-        return { player: nextPlayers[0], idx: 0 };
+      if (defIdx === totalPlayer - 1) {
+        return 0;
       } else {
-        return { player: nextPlayers[defIdx + 1], idx: defIdx + 1 };
+        return defIdx + 1;
       }
     }
   }

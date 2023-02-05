@@ -4,14 +4,12 @@ import { createContext } from "react";
 
 export const initialGame = {
   game: {
+    isRunning: false,
     lap: 0,
     defIdx: 0,
     copyIdx: 0,
-    isRunning: false,
-    totalPlayer: 2,
     currentDefinerId: null,
     currentPlayerId: null,
-    currentPlayer: null,
     currentAction: "def",
   },
   setGame: (game) => {},

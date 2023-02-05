@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "mocha": "npx mocha --reporter spec",
-    "dev-test-e2e": "npx cypress open",
+    "cypress": "npx cypress open",
     "cy:run": "cypress run",
     "test": "start-server-and-test http://localhost:3000 cy:run"
   },

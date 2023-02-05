@@ -1,7 +1,7 @@
 import lastToPlay from "./lastToPlay.js";
 
-function getNextAction(currAction, currResponse, players, game) {
-  switch (currAction) {
+function getNextAction(players, game, currResponse) {
+  switch (game.currentAction) {
     case "redo":
     case "copy": {
       // If there still someone active stay on copy else go back to define

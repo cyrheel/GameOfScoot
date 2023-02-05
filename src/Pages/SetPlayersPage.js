@@ -40,6 +40,7 @@ function SetPlayersPage() {
             const newPlayers = [
               ...players,
               {
+                id: players.length,
                 name: `Player ${players.length + 1}`,
                 position: players.length + 1,
                 letter: "",
@@ -100,7 +101,7 @@ function SetPlayersPage() {
             setGame({
               ...game,
               totalPlayer: players.length,
-              currentPlayer: players[0],
+              currentPlayerId: 0,
               isRunning: true,
             });
             navigate("/game", { replace: true });
