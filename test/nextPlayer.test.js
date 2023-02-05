@@ -31,6 +31,32 @@ describe("getNextPlayer()", () => {
       const result = getNextPlayer(nextAction, game, definer, 2);
       expector(result).to.equal(0);
     });
+
+    it("should not select the definer when nextAction is copy", () => {
+      const definer = 0;
+      const nextAction = "copy";
+      const game = {
+        defIdx: 0,
+        copyIdx: 0,
+        currentAction: "def",
+        currentDefinerId: null,
+      };
+      const result = getNextPlayer(nextAction, game, definer, 2);
+      expector(result).to.equal(1);
+    });
+
+    it("should not select the definer when nextAction is copy (2)", () => {
+      const definer = 1;
+      const nextAction = "copy";
+      const game = {
+        defIdx: 1,
+        copyIdx: 0,
+        currentAction: "def",
+        currentDefinerId: null,
+      };
+      const result = getNextPlayer(nextAction, game, definer, 2);
+      expector(result).to.equal(0);
+    });
   });
 
   describe("Multiple Players", () => {

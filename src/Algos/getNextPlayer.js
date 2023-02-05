@@ -5,7 +5,7 @@ function getNextPlayer(nextAction, game, definer, totalPlayer) {
     case "redo":
     case "copy": {
       if (copyIdx + 1 === currentDefinerId || copyIdx + 1 === definer) {
-        if (copyIdx + 2 >= game.totalPlayer - 1) {
+        if (copyIdx + 2 > totalPlayer - 1) {
           return definer === 0 ? 1 : 0;
         } else {
           return copyIdx + 2;
