@@ -1,9 +1,11 @@
+import lastToPlay from "./lastToPlay.js";
+
 function manageStatus(players, game, definer) {
   // Currently, set every player who copy to isActive false
   // Also manage to set definer to isActive false cause he don't have to copy his own trick
   let nextPlayers = players;
   if (definer !== null) {
-    nextPlayers = players.map((p, i) => {
+    nextPlayers = nextPlayers.map((p, i) => {
       if (i === definer) {
         return { ...p, isActive: false };
       } else {
@@ -20,6 +22,14 @@ function manageStatus(players, game, definer) {
       }
     });
   }
+
+  // if everyone is inactive then reset all to active
+  if (lastToPlay(nextPlayers, game)) {
+    nextPlayers = nextPlayers.map((p, i) => {
+      return { ...p, isActive: true };
+    });
+  }
+
   return nextPlayers;
 }
 

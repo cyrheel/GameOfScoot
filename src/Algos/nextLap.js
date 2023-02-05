@@ -9,7 +9,7 @@ function nextLap(game, setGame, players, setPlayers, rules, currResponse) {
   // Game
   const definer = getDefiner(game, currResponse);
   const nextAction = getNextAction(players, game, currResponse);
-  const idx = getNextPlayer(nextAction, game, definer);
+  const idx = getNextPlayer(nextAction, game, definer, players.length);
 
   const nextGameOptions = {
     ...game,
