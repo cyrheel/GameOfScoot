@@ -19,7 +19,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - name: Unit Tests
-        uses: npm run mocha
+        run: npm run mocha
       - name: Cypress
         uses: cypress-io/github-action@v5
         with:
