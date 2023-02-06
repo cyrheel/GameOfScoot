@@ -1,6 +1,7 @@
 import lastToPlay from "./lastToPlay.js";
 
 function getNextAction(players, game, currResponse) {
+  // return the next Action
   switch (game.currentAction) {
     case "redo":
     case "copy": {

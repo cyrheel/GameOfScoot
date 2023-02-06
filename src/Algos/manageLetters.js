@@ -1,4 +1,5 @@
 function manageLetters(players, game, rules, currResponse) {
+  // return players with letters updated
   const { currentAction, currentPlayerId } = game;
   if (currentAction === "copy") {
     if (!currResponse) {

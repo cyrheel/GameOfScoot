@@ -8,9 +8,7 @@ export const initialRules = {
     nbOfTry: 2,
     targetWord: "SCOOT",
   },
-  customRules: {},
   setRules: (rules) => {},
-  setCustomRules: (rules) => {},
 };
 
 export default createContext(initialRules);
