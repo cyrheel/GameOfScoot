@@ -14,13 +14,10 @@ import Didacticiel from "./Pages/Didacticiel.js";
 function Router() {
   const [players, setPlayers] = useState(initialPlayers.players);
   const [rules, setRules] = useState(initialRules.rules);
-  const [customRules, setCustomRules] = useState(initialRules.customRules);
   const [game, setGame] = useState(initialGame.game);
 
   return (
-    <RulesContext.Provider
-      value={{ rules, customRules, setRules, setCustomRules }}
-    >
+    <RulesContext.Provider value={{ rules, setRules }}>
       <PlayersContext.Provider value={{ players, setPlayers }}>
         <GameContext.Provider value={{ game, setGame }}>
           <BrowserRouter>

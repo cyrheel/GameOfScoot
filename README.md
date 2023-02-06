@@ -9,17 +9,10 @@ Technos:
 - NodeJS
 - ReactJS
 - Styled-components
-- Mocha
+- Mocha+Chai
 - Cypress
 
 Prod:
 
 - Hosted to https://goo.software by DigitalOcean
 - DomainName by Name.com
-
-How To Run Prod In Local:
-
-- Clone this repo
-- Start With Prod Image : "docker compose -f dockercompose.yml up -d"
-- Build the image : "docker build . -f Dockerfile -t cyrheel/goo:latest"
-- Publish new image : "docker push cyrheel/goo"

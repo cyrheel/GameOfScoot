@@ -5,6 +5,7 @@ import getDefiner from "./getDefiner.js";
 import getNextAction from "./getNextAction.js";
 import getNextPlayer from "./getNextPlayer.js";
 
+// META, Manage the current lap and set game and players for the next lap
 function nextLap(game, setGame, players, setPlayers, rules, currResponse) {
   // Game
   const definer = getDefiner(game, currResponse);

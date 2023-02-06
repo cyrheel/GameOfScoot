@@ -1,5 +1,5 @@
 function getNextPlayer(nextAction, game, definer, totalPlayer) {
-  // it return the id of the next player
+  // return the id of the next player
   const { defIdx, copyIdx, currentAction, currentDefinerId } = game;
   switch (nextAction) {
     case "redo":
