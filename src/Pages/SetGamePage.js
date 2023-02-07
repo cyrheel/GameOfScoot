@@ -25,7 +25,7 @@ const PlayerContainer = style.div`
   overflow: auto;
 `;
 
-function SetPlayersPage() {
+function SetGamePage() {
   const navigate = useNavigate();
   const previousPath = window.location.search.substring(6);
 
@@ -140,4 +140,4 @@ function SetPlayersPage() {
   );
 }
 
-export default SetPlayersPage;
+export default SetGamePage;

@@ -35,7 +35,7 @@ function GamePage() {
       <Header>
         <CustomBtn
           id="goback"
-          onClick={() => navigate("/set-players", { replace: true })}
+          onClick={() => navigate("/set-game", { replace: true })}
         >
           {"<-"}
         </CustomBtn>

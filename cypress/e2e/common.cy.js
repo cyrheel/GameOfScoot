@@ -26,23 +26,22 @@ describe("Common", () => {
       cy.get("#goback").click();
       cy.url().should("include", "/");
     });
-    it("should go to '/set-players' when 'classic mode' button is clicked", () => {
+    it("should go to '/set-game' when 'classic mode' button is clicked", () => {
       cy.get("#classicmode").click();
-      cy.url().should("include", "/set-players");
+      cy.url().should("include", "/set-game");
     });
-    it("should go to '/set-players' when 'custom mode' button is clicked", () => {
+    it("should go to '/set-game' when 'custom mode' button is clicked", () => {
       cy.get("#custommode").click();
-      cy.url().should("include", "/set-players");
+      cy.url().should("include", "/set-game");
     });
   });
   describe("Set Player Page Navigation", () => {
     beforeEach(() => {
-      cy.visit("http://127.0.0.1:3000/set-players");
+      cy.visit("http://127.0.0.1:3000/set-game");
     });
     it("should go back when '<-' button is clicked", () => {
-      // TODO: manage when you come from 'classic mode' or 'custom mode'
-      // cy.get("#goback").click();
-      // cy.url().should("include", "/");
+      cy.get("#goback").click();
+      cy.url().should("include", "/play");
     });
     it("should go to '/game' when 'Play Right Now' button is clicked", () => {
       cy.get("#playrn").click();
