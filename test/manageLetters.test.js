@@ -10,28 +10,31 @@ describe("manageLetters()", () => {
   it("should not set letters if action is def", () => {
     const currResponse = false;
     const game = {
+      ...classicRules,
       currentAction: "def",
       currentPlayerId: 1,
     };
 
-    const result = manageLetters(players2, game, classicRules, currResponse);
+    const result = manageLetters(players2, game, currResponse);
     expector(result).to.equal(players2);
   });
 
   it("should not set letters if action is copy and res is true", () => {
     const currResponse = true;
     const game = {
+      ...classicRules,
       currentAction: "def",
       currentPlayerId: 1,
     };
 
-    const result = manageLetters(players2, game, classicRules, currResponse);
+    const result = manageLetters(players2, game, currResponse);
     expector(result).to.equal(players2);
   });
 
   it("should set letters to currentPlayer if action is copy and res is false", () => {
     const currResponse = false;
     const game = {
+      ...classicRules,
       currentAction: "copy",
       currentPlayerId: 1,
     };
@@ -68,7 +71,7 @@ describe("manageLetters()", () => {
         },
       },
     ];
-    const result = manageLetters(players2, game, classicRules, currResponse);
+    const result = manageLetters(players2, game, currResponse);
     expector(result).to.deep.equal(expected);
   });
 });
