@@ -1,9 +1,11 @@
 import chai from "chai";
 
 import getNextAction from "../src/Algos/getNextAction.js";
-import { players2, playersMulti } from "./mocks/players.js";
+import { playersMulti } from "./mocks/players.js";
+import { initialPlayers } from "../src/Context/PlayerContext.js";
 
 const { expect: expector } = chai;
+const players2 = initialPlayers.players;
 
 describe("getNextAction()", () => {
   describe("Two Players", () => {
@@ -49,6 +51,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: true,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -64,6 +67,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -101,6 +105,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -116,6 +121,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: true,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -173,6 +179,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -188,6 +195,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -203,6 +211,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: true,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -218,6 +227,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -245,6 +255,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -260,6 +271,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -275,6 +287,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: true,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -290,6 +303,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: true,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -317,6 +331,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -332,6 +347,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -347,6 +363,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: false,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -362,6 +379,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: true,
+          try: 0,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,

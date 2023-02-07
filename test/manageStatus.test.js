@@ -1,10 +1,10 @@
 import chai from "chai";
 
 import manageStatus from "../src/Algos/manageStatus.js";
-import { players2 } from "./mocks/players.js";
-// import { classicRules } from "./mocks/classicRules.js";
+import { initialPlayers } from "../src/Context/PlayerContext.js";
 
 const { expect: expector } = chai;
+const players2 = initialPlayers.players;
 
 describe("manageStatus()", () => {
   it("should do nothing if action is def but definer doesn't exist", () => {
@@ -33,6 +33,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: false,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -48,6 +49,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -75,6 +77,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: false,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -90,6 +93,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: false,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -105,6 +109,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -120,6 +125,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -138,6 +144,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: false,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -153,6 +160,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: false,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -168,6 +176,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: false,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -183,6 +192,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -210,6 +220,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: false,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -225,6 +236,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: false,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -240,6 +252,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: false,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -255,6 +268,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -273,6 +287,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -288,6 +303,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -303,6 +319,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -318,6 +335,7 @@ describe("manageStatus()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,

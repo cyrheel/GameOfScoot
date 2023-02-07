@@ -1,10 +1,11 @@
 import chai from "chai";
 
 import manageLetters from "../src/Algos/manageLetters.js";
-import { players2 } from "./mocks/players.js";
+import { initialPlayers } from "../src/Context/PlayerContext.js";
 import { classicRules } from "./mocks/classicRules.js";
 
 const { expect: expector } = chai;
+const players2 = initialPlayers.players;
 
 describe("manageLetters()", () => {
   it("should not set letters if action is def", () => {
@@ -47,6 +48,7 @@ describe("manageLetters()", () => {
         letter: "",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,
@@ -62,6 +64,7 @@ describe("manageLetters()", () => {
         letter: "S",
         redo: false,
         isActive: true,
+        try: 0,
         stats: {
           nbDef: 0,
           nbFailedDef: 0,

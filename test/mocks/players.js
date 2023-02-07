@@ -1,36 +1,3 @@
-export const players2 = [
-  {
-    id: 0,
-    name: "Player 1",
-    position: 1,
-    letter: "",
-    redo: false,
-    isActive: true,
-    stats: {
-      nbDef: 0,
-      nbFailedDef: 0,
-      nbCopied: 0,
-      nbFailedTry: 0,
-      nbLetterGiven: 0,
-    },
-  },
-  {
-    id: 1,
-    name: "Player 2",
-    position: 2,
-    letter: "",
-    redo: false,
-    isActive: true,
-    stats: {
-      nbDef: 0,
-      nbFailedDef: 0,
-      nbCopied: 0,
-      nbFailedTry: 0,
-      nbLetterGiven: 0,
-    },
-  },
-];
-
 export const playersMulti = [
   {
     id: 0,
