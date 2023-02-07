@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom"; // TODO: try useParams instead of windows.machin
+import { useNavigate } from "react-router-dom";
 import style from "styled-components";
 
 import NbOfTry from "../Components/NbOfTry.js";
+import IsHard from "../Components/IsHard.js";
+import GameName from "../Components/GameName.js";
 import GameContext from "../Context/GameContext.js";
 import PlayersContext from "../Context/PlayerContext.js";
 import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
@@ -31,6 +33,8 @@ function SetPlayersPage() {
   const { game, setGame } = useContext(GameContext);
 
   const [tries, setTries] = useState(2);
+  const [isHard, setIsHard] = useState(false);
+  const [gameName, setGameName] = useState("SCOOT");
   return (
     <PageWrapper>
       <Header>
@@ -39,6 +43,15 @@ function SetPlayersPage() {
         </CustomBtn>
       </Header>
       <Body>
+        {previousPath !== "classic" && (
+          <GameName gameName={gameName} setGameName={setGameName} />
+        )}
+        {previousPath !== "classic" && (
+          <IsHard isHard={isHard} setIsHard={setIsHard} />
+        )}
+        {previousPath !== "classic" && !isHard && (
+          <NbOfTry tries={tries} setTries={setTries} />
+        )}
         {previousPath !== "classic" && (
           <button
             onClick={() => {
@@ -68,9 +81,6 @@ function SetPlayersPage() {
           >
             Add Player
           </button>
-        )}
-        {previousPath !== "classic" && (
-          <NbOfTry tries={tries} setTries={setTries} />
         )}
         <PlayerContainer>
           {players.map((player, idx) => {
@@ -107,12 +117,18 @@ function SetPlayersPage() {
         <button
           id="playrn"
           onClick={() => {
+            // TODO: Error handling and add tests
+            // if (targetWord === "") {
+            // throw error and display whats wrong
+            // }
             setGame({
               ...game,
               totalPlayer: players.length,
               currentPlayerId: 0,
               isRunning: true,
               nbOfTry: tries,
+              isHard: isHard,
+              targetWord: gameName,
             });
             navigate("/game", { replace: true });
           }}

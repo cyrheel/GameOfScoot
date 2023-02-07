@@ -31,7 +31,7 @@ function GameInfo() {
   return (
     <>
       <GameInfoW>
-        <p>You are playing {game.gameName}</p>
+        <p>You are playing Game of {game.targetWord}</p>
         <p>Score Board</p>
         <PlayerContainer>
           {players.map((p, i) => {
