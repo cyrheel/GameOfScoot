@@ -5,8 +5,9 @@ import style from "styled-components";
 import NbOfTry from "../Components/NbOfTry.js";
 import IsHard from "../Components/IsHard.js";
 import GameName from "../Components/GameName.js";
+import SetPlayers from "../Components/SetPlayers.js";
 import GameContext from "../Context/GameContext.js";
-import PlayersContext from "../Context/PlayerContext.js";
+import PlayersContext, { initialPlayers } from "../Context/PlayerContext.js";
 import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
 
 const Body = style.div`
@@ -17,14 +18,6 @@ const Body = style.div`
   padding: 2%;
 `;
 
-const PlayerContainer = style.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-height: 80%;
-  overflow: auto;
-`;
-
 function SetGamePage() {
   const navigate = useNavigate();
   const previousPath = window.location.search.substring(6);
@@ -32,6 +25,9 @@ function SetGamePage() {
   const { players, setPlayers } = useContext(PlayersContext);
   const { game, setGame } = useContext(GameContext);
 
+  const [nextPlayers, setNextPlayers] = useState(
+    previousPath === "classic" ? initialPlayers.players : players
+  );
   const [tries, setTries] = useState(2);
   const [isHard, setIsHard] = useState(false);
   const [gameName, setGameName] = useState("SCOOT");
@@ -52,75 +48,19 @@ function SetGamePage() {
         {previousPath !== "classic" && !isHard && (
           <NbOfTry tries={tries} setTries={setTries} />
         )}
-        {previousPath !== "classic" && (
-          <button
-            onClick={() => {
-              const newPlayers = [
-                ...players,
-                {
-                  id: players.length,
-                  name: `Player ${players.length + 1}`,
-                  position: players.length + 1,
-                  letter: "",
-                  redo: false,
-                  isActive: true,
-                  hasDef: false,
-                  stats: {
-                    nbDef: 0,
-                    nbFailedDef: 0,
-                    nbCopied: 0,
-                    nbFailedTry: 0,
-                    nbLetterGiven: 0,
-                  },
-                },
-              ];
-              setPlayers(newPlayers);
-            }}
-            id="addPlayer"
-            style={{ width: "25%" }}
-          >
-            Add Player
-          </button>
-        )}
-        <PlayerContainer>
-          {players.map((player, idx) => {
-            return (
-              <div key={idx}>
-                <input
-                  placeholder={player.name}
-                  onChange={(e) => {
-                    const nextPlayers = players.map((p, i) => {
-                      if (i === idx) {
-                        return {
-                          ...p,
-                          name: e.target.value,
-                        };
-                      }
-                      return p;
-                    });
-                    setPlayers(nextPlayers);
-                  }}
-                />
-                {players.length > 2 && (
-                  <button
-                    onClick={() => {
-                      setPlayers(players.filter((p, i) => i !== idx));
-                    }}
-                  >
-                    X
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </PlayerContainer>
+        <SetPlayers
+          players={nextPlayers}
+          setPlayers={setNextPlayers}
+          previousPath={previousPath}
+        />
         <button
           id="playrn"
           onClick={() => {
             // TODO: Error handling and add tests
-            // if (targetWord === "") {
+            // if (targetWord === "" || player[O].name === "") {
             // throw error and display whats wrong
             // }
+            setPlayers(nextPlayers);
             setGame({
               ...game,
               totalPlayer: players.length,
@@ -133,7 +73,7 @@ function SetGamePage() {
             navigate("/game", { replace: true });
           }}
         >
-          Play with this players
+          Play RN!
         </button>
       </Body>
     </PageWrapper>
