@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import style from "styled-components";
 
 import PlayerContext from "../Context/PlayerContext.js";
-import RulesContext from "../Context/RulesContext.js";
-// import GameContext from "../Context/GameContext.js";
+import GameContext from "../Context/GameContext.js";
 
 const GameInfoW = style.div`
   display: flex;
@@ -28,12 +27,11 @@ const PlayerDiv = style.div`
 
 function GameInfo() {
   const { players } = useContext(PlayerContext);
-  const { rules } = useContext(RulesContext);
-  // const { game } = useContext(GameContext);
+  const { game } = useContext(GameContext);
   return (
     <>
       <GameInfoW>
-        <p>You are playing {rules.gameName}</p>
+        <p>You are playing Game of {game.targetWord}</p>
         <p>Score Board</p>
         <PlayerContainer>
           {players.map((p, i) => {

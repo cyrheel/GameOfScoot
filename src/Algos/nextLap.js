@@ -6,7 +6,7 @@ import getNextAction from "./getNextAction.js";
 import getNextPlayer from "./getNextPlayer.js";
 
 // META, Manage the current lap and set game and players for the next lap
-function nextLap(game, setGame, players, setPlayers, rules, currResponse) {
+function nextLap(game, setGame, players, setPlayers, currResponse) {
   // Game
   const definer = getDefiner(game, currResponse);
   const nextAction = getNextAction(players, game, currResponse);
@@ -25,7 +25,6 @@ function nextLap(game, setGame, players, setPlayers, rules, currResponse) {
   const letteredStatuedPlayers = manageLetters(
     statuedPlayers,
     game,
-    rules,
     currResponse
   );
 

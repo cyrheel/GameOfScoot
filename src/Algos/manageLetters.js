@@ -1,4 +1,4 @@
-function manageLetters(players, game, rules, currResponse) {
+function manageLetters(players, game, currResponse) {
   // return players with letters updated
   const { currentAction, currentPlayerId } = game;
   if (currentAction === "copy") {
@@ -6,7 +6,7 @@ function manageLetters(players, game, rules, currResponse) {
       const nextPlayers = players.map((p, i) => {
         if (i === currentPlayerId) {
           const nextLetters =
-            players[i].letter + rules.targetWord[players[i].letter.length];
+            players[i].letter + game.targetWord[players[i].letter.length];
           return {
             ...p,
             letter: nextLetters,
