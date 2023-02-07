@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom"; // TODO: try useParams instead of windows.machin
 import style from "styled-components";
 
+import NbOfTry from "../Components/NbOfTry.js";
 import GameContext from "../Context/GameContext.js";
 import PlayersContext from "../Context/PlayerContext.js";
 import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
@@ -24,9 +25,12 @@ const PlayerContainer = style.div`
 
 function SetPlayersPage() {
   const navigate = useNavigate();
+  const previousPath = window.location.search.substring(6);
+
   const { players, setPlayers } = useContext(PlayersContext);
   const { game, setGame } = useContext(GameContext);
 
+  const [tries, setTries] = useState(2);
   return (
     <PageWrapper>
       <Header>
@@ -35,34 +39,39 @@ function SetPlayersPage() {
         </CustomBtn>
       </Header>
       <Body>
-        <button
-          onClick={() => {
-            const newPlayers = [
-              ...players,
-              {
-                id: players.length,
-                name: `Player ${players.length + 1}`,
-                position: players.length + 1,
-                letter: "",
-                redo: false,
-                isActive: true,
-                hasDef: false,
-                stats: {
-                  nbDef: 0,
-                  nbFailedDef: 0,
-                  nbCopied: 0,
-                  nbFailedTry: 0,
-                  nbLetterGiven: 0,
+        {previousPath !== "classic" && (
+          <button
+            onClick={() => {
+              const newPlayers = [
+                ...players,
+                {
+                  id: players.length,
+                  name: `Player ${players.length + 1}`,
+                  position: players.length + 1,
+                  letter: "",
+                  redo: false,
+                  isActive: true,
+                  hasDef: false,
+                  stats: {
+                    nbDef: 0,
+                    nbFailedDef: 0,
+                    nbCopied: 0,
+                    nbFailedTry: 0,
+                    nbLetterGiven: 0,
+                  },
                 },
-              },
-            ];
-            setPlayers(newPlayers);
-          }}
-          id="addPlayer"
-          style={{ width: "25%" }}
-        >
-          Add Player
-        </button>
+              ];
+              setPlayers(newPlayers);
+            }}
+            id="addPlayer"
+            style={{ width: "25%" }}
+          >
+            Add Player
+          </button>
+        )}
+        {previousPath !== "classic" && (
+          <NbOfTry tries={tries} setTries={setTries} />
+        )}
         <PlayerContainer>
           {players.map((player, idx) => {
             return (
@@ -103,6 +112,7 @@ function SetPlayersPage() {
               totalPlayer: players.length,
               currentPlayerId: 0,
               isRunning: true,
+              nbOfTry: tries,
             });
             navigate("/game", { replace: true });
           }}

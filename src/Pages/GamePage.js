@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import style from "styled-components";
 
 import PlayersContext, { initialPlayers } from "../Context/PlayerContext.js";
-// import RulesContext from "../Context/RulesContext.js";
 import GameContext, { initialGame } from "../Context/GameContext.js";
 import GameInfo from "../Components/GameInfo.js";
 import RunGame from "../Components/RunGame.js";
@@ -29,7 +28,6 @@ const GameWrapper = style.div`
 function GamePage() {
   const navigate = useNavigate();
   const { players, setPlayers } = useContext(PlayersContext);
-  // const { rules } = useContext(RulesContext);
   const { setGame } = useContext(GameContext);
 
   return (

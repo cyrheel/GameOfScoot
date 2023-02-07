@@ -29,13 +29,17 @@ function ChooseGamePage() {
       <ButtonWrapper>
         <button
           id="classicmode"
-          onClick={() => navigate("/set-players", { replace: true })}
+          onClick={() =>
+            navigate("/set-players?from=classic", { replace: true })
+          }
         >
           Classic Mode
         </button>
         <button
           id="custommode"
-          onClick={() => navigate("/set-players", { replace: true })}
+          onClick={() =>
+            navigate("/set-players?from=custom", { replace: true })
+          }
         >
           Custom Mode
         </button>

@@ -3,7 +3,6 @@ import style from "styled-components";
 
 import nextLap from "../Algos/nextLap.js";
 import PlayerContext from "../Context/PlayerContext.js";
-import RulesContext from "../Context/RulesContext.js";
 import GameContext from "../Context/GameContext.js";
 
 import Actions from "./Actions.js";
@@ -33,15 +32,14 @@ const BtnContainer = style.div`
 function RunGame() {
   const { game, setGame } = useContext(GameContext);
   const { players, setPlayers } = useContext(PlayerContext);
-  const { rules } = useContext(RulesContext);
 
   useEffect(() => {
     for (const player of players) {
-      if (player.letter === rules.targetWord) {
+      if (player.letter === game.targetWord) {
         setGame({ ...game, isRunning: false });
       }
     }
-  }, [game, players, rules.targetWord, setGame]);
+  }, [game, players, game.targetWord, setGame]);
 
   if (!game.isRunning) {
     return <p id="endGame">End Game :/</p>;
@@ -58,18 +56,14 @@ function RunGame() {
       <BtnContainer>
         <button
           id="YES"
-          onClick={() =>
-            nextLap(game, setGame, players, setPlayers, rules, true)
-          }
+          onClick={() => nextLap(game, setGame, players, setPlayers, true)}
           style={{ width: "50%" }}
         >
           Oui
         </button>
         <button
           id="NO"
-          onClick={() =>
-            nextLap(game, setGame, players, setPlayers, rules, false)
-          }
+          onClick={() => nextLap(game, setGame, players, setPlayers, false)}
           style={{ width: "50%" }}
         >
           Non

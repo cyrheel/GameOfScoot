@@ -4,7 +4,12 @@ import { createContext } from "react";
 
 export const initialGame = {
   game: {
+    gameName: "Game of Scoot",
     isRunning: false,
+    isHard: false,
+    allowRedo: false,
+    nbOfTry: 2,
+    targetWord: "SCOOT",
     lap: 0,
     defIdx: 0,
     copyIdx: 0,
