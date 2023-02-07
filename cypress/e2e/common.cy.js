@@ -35,7 +35,7 @@ describe("Common", () => {
       cy.url().should("include", "/set-game");
     });
   });
-  describe("Set Player Page Navigation", () => {
+  describe("Set Game Page Navigation", () => {
     beforeEach(() => {
       cy.visit("http://127.0.0.1:3000/set-game");
     });
