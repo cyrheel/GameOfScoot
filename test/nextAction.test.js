@@ -27,17 +27,97 @@ describe("getNextAction()", () => {
       expector(result).to.equal("copy");
     });
 
-    it("currAction = copy, res = false, not lastToPlay", () => {
-      const currResponse = false;
+    it("currAction = copy, lastToPlay, still have try", () => {
+      const currResponse = true;
       const game = {
         currentAction: "copy",
         currentPlayerId: 1,
+        nbOfTry: 2,
       };
-      const result = getNextAction(players2, game, currResponse);
+      const players = [
+        {
+          id: 0,
+          name: "Player 1",
+          position: 1,
+          letter: "",
+          redo: false,
+          isActive: false,
+          try: 0,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 1,
+          name: "Player 2",
+          position: 2,
+          letter: "",
+          redo: false,
+          isActive: true,
+          try: 0,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+      ];
+      const result = getNextAction(players, game, currResponse);
       expector(result).to.equal("copy");
     });
 
-    it("currAction = copy, res = false, lastToPlay", () => {
+    it("currAction = copy, lastToPlay, no more try", () => {
+      const currResponse = true;
+      const game = {
+        currentAction: "copy",
+        currentPlayerId: 1,
+        nbOfTry: 2,
+      };
+      const players = [
+        {
+          id: 0,
+          name: "Player 1",
+          position: 1,
+          letter: "",
+          redo: false,
+          isActive: false,
+          try: 0,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 1,
+          name: "Player 2",
+          position: 2,
+          letter: "",
+          redo: false,
+          isActive: true,
+          try: 2,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+      ];
+      const result = getNextAction(players, game, currResponse);
+      expector(result).to.equal("def");
+    });
+
+    it("currAction = copy, not lastToPlay, still have try", () => {
       const currResponse = false;
       const game = {
         currentAction: "copy",
@@ -78,24 +158,15 @@ describe("getNextAction()", () => {
         },
       ];
       const result = getNextAction(players, game, currResponse);
-      expector(result).to.equal("def");
-    });
-
-    it("currAction = copy, res = true, not lastToPlay", () => {
-      const currResponse = true;
-      const game = {
-        currentAction: "copy",
-        currentPlayerId: 0,
-      };
-      const result = getNextAction(players2, game, currResponse);
       expector(result).to.equal("copy");
     });
 
-    it("currAction = copy, res = true, lastToPlay", () => {
-      const currResponse = true;
+    it("currAction = copy, not lastToPlay, no more try", () => {
+      const currResponse = false;
       const game = {
         currentAction: "copy",
         currentPlayerId: 1,
+        nbOfTry: 3,
       };
       const players = [
         {
@@ -121,7 +192,7 @@ describe("getNextAction()", () => {
           letter: "",
           redo: false,
           isActive: true,
-          try: 0,
+          try: 3,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -155,21 +226,68 @@ describe("getNextAction()", () => {
       expector(result).to.equal("copy");
     });
 
-    it("currAction = copy, res = false, not lastToPlay", () => {
-      const currResponse = false;
+    it("currAction = copy, res = true, not lastToPlay, still have try", () => {
+      const currResponse = true;
       const game = {
         currentAction: "copy",
-        currentPlayerId: 2,
+        currentPlayerId: 0,
+        nbOfTry: 2,
       };
-      const result = getNextAction(playersMulti, game, currResponse);
+      const result = getNextAction(players2, game, currResponse);
       expector(result).to.equal("copy");
     });
 
-    it("currAction = copy, res = false, lastToPlay", () => {
-      const currResponse = false;
+    it("currAction = copy, res = true, not lastToPlay, no more try", () => {
+      const currResponse = true;
       const game = {
         currentAction: "copy",
-        currentPlayerId: 2,
+        currentPlayerId: 1,
+        nbOfTry: 2,
+      };
+      const players = [
+        {
+          id: 0,
+          name: "Player 1",
+          position: 1,
+          letter: "",
+          redo: false,
+          isActive: true,
+          try: 0,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+        {
+          id: 1,
+          name: "Player 2",
+          position: 2,
+          letter: "",
+          redo: false,
+          isActive: true,
+          try: 2,
+          stats: {
+            nbDef: 0,
+            nbFailedDef: 0,
+            nbCopied: 0,
+            nbFailedTry: 0,
+            nbLetterGiven: 0,
+          },
+        },
+      ];
+      const result = getNextAction(players, game, currResponse);
+      expector(result).to.equal("copy");
+    });
+
+    it("currAction = copy, res = true, lastToPlay, still have try", () => {
+      const currResponse = true;
+      const game = {
+        currentAction: "copy",
+        currentPlayerId: 1,
+        nbOfTry: 2,
       };
       const players = [
         {
@@ -194,8 +312,8 @@ describe("getNextAction()", () => {
           position: 2,
           letter: "",
           redo: false,
-          isActive: false,
-          try: 0,
+          isActive: true,
+          try: 1,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -204,14 +322,27 @@ describe("getNextAction()", () => {
             nbLetterGiven: 0,
           },
         },
+      ];
+      const result = getNextAction(players, game, currResponse);
+      expector(result).to.equal("def");
+    });
+
+    it("currAction = copy, res = true, lastToPlay, no more try", () => {
+      const currResponse = true;
+      const game = {
+        currentAction: "copy",
+        currentPlayerId: 0,
+        nbOfTry: 2,
+      };
+      const players = [
         {
-          id: 2,
-          name: "Player 3",
-          position: 3,
+          id: 0,
+          name: "Player 1",
+          position: 1,
           letter: "",
           redo: false,
           isActive: true,
-          try: 0,
+          try: 2,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -221,9 +352,9 @@ describe("getNextAction()", () => {
           },
         },
         {
-          id: 3,
-          name: "Player 4",
-          position: 4,
+          id: 1,
+          name: "Player 2",
+          position: 2,
           letter: "",
           redo: false,
           isActive: false,
@@ -241,11 +372,11 @@ describe("getNextAction()", () => {
       expector(result).to.equal("def");
     });
 
-    it("currAction = copy, res = true, not lastToPlay", () => {
-      const currResponse = true;
+    it("currAction = copy, res = false, not lastToPlay, still have try", () => {
+      const currResponse = false;
       const game = {
         currentAction: "copy",
-        currentPlayerId: 2,
+        currentPlayerId: 1,
       };
       const players = [
         {
@@ -254,8 +385,8 @@ describe("getNextAction()", () => {
           position: 1,
           letter: "",
           redo: false,
-          isActive: false,
-          try: 0,
+          isActive: true,
+          try: 2,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,
@@ -268,38 +399,6 @@ describe("getNextAction()", () => {
           id: 1,
           name: "Player 2",
           position: 2,
-          letter: "",
-          redo: false,
-          isActive: false,
-          try: 0,
-          stats: {
-            nbDef: 0,
-            nbFailedDef: 0,
-            nbCopied: 0,
-            nbFailedTry: 0,
-            nbLetterGiven: 0,
-          },
-        },
-        {
-          id: 2,
-          name: "Player 3",
-          position: 3,
-          letter: "",
-          redo: false,
-          isActive: true,
-          try: 0,
-          stats: {
-            nbDef: 0,
-            nbFailedDef: 0,
-            nbCopied: 0,
-            nbFailedTry: 0,
-            nbLetterGiven: 0,
-          },
-        },
-        {
-          id: 3,
-          name: "Player 4",
-          position: 4,
           letter: "",
           redo: false,
           isActive: true,
@@ -317,11 +416,21 @@ describe("getNextAction()", () => {
       expector(result).to.equal("copy");
     });
 
-    it("currAction = copy, res = true, lastToPlay", () => {
-      const currResponse = true;
+    it("currAction = copy, res = false, not lastToPlay, no more have try", () => {
+      const currResponse = false;
       const game = {
         currentAction: "copy",
-        currentPlayerId: 3,
+        currentPlayerId: 1,
+      };
+      const result = getNextAction(players2, game, currResponse);
+      expector(result).to.equal("copy");
+    });
+
+    it("currAction = copy, res = false, lastToPlay, still have try", () => {
+      const currResponse = false;
+      const game = {
+        currentAction: "copy",
+        currentPlayerId: 0,
       };
       const players = [
         {
@@ -330,7 +439,7 @@ describe("getNextAction()", () => {
           position: 1,
           letter: "",
           redo: false,
-          isActive: false,
+          isActive: true,
           try: 0,
           stats: {
             nbDef: 0,
@@ -356,10 +465,23 @@ describe("getNextAction()", () => {
             nbLetterGiven: 0,
           },
         },
+      ];
+      const result = getNextAction(players, game, currResponse);
+      expector(result).to.equal("copy");
+    });
+
+    it("currAction = copy, res = false, lastToPlay, no more try", () => {
+      const currResponse = false;
+      const game = {
+        currentAction: "copy",
+        currentPlayerId: 1,
+        nbOfTry: 3,
+      };
+      const players = [
         {
-          id: 2,
-          name: "Player 3",
-          position: 3,
+          id: 0,
+          name: "Player 1",
+          position: 1,
           letter: "",
           redo: false,
           isActive: false,
@@ -373,13 +495,13 @@ describe("getNextAction()", () => {
           },
         },
         {
-          id: 3,
-          name: "Player 4",
-          position: 4,
+          id: 1,
+          name: "Player 2",
+          position: 2,
           letter: "",
           redo: false,
           isActive: true,
-          try: 0,
+          try: 3,
           stats: {
             nbDef: 0,
             nbFailedDef: 0,

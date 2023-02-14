@@ -1,14 +1,21 @@
 import lastToPlay from "./lastToPlay.js";
+import lastTry from "./lastTry.js";
 
 function getNextAction(players, game, currResponse) {
   // return the next Action
   switch (game.currentAction) {
     case "redo":
     case "copy": {
-      // If there still someone active stay on copy else go back to define
-      if (lastToPlay(players, game)) {
-        return "def";
+      if (lastTry(players, game)) {
+        if (lastToPlay(players, game)) {
+          return "def";
+        } else {
+          return "copy";
+        }
       } else {
+        if (currResponse && lastToPlay(players, game)) {
+          return "def";
+        }
         return "copy";
       }
     }

@@ -1,7 +1,8 @@
 import lastToPlay from "./lastToPlay.js";
+import lastTry from "./lastTry.js";
 
-function manageStatus(players, game, definer) {
-  // Currently, set every player who copy to isActive false
+function manageStatus(players, game, definer, currResponse) {
+  // Currently, set every player who copy and have no more try to isActive false
   // Also manage to set definer to isActive false cause he don't have to copy his own trick
   let nextPlayers = players;
   if (definer !== null) {
@@ -13,7 +14,10 @@ function manageStatus(players, game, definer) {
       }
     });
   }
-  if (game.currentAction === "copy") {
+  if (
+    (game.currentAction === "copy" && lastTry(nextPlayers, game)) ||
+    (game.currentAction === "copy" && currResponse)
+  ) {
     nextPlayers = nextPlayers.map((p, i) => {
       if (i === game.currentPlayerId) {
         return { ...p, isActive: false };
@@ -24,10 +28,12 @@ function manageStatus(players, game, definer) {
   }
 
   // if everyone is inactive then reset all to active
-  if (lastToPlay(nextPlayers, game)) {
-    nextPlayers = nextPlayers.map((p, i) => {
-      return { ...p, isActive: true };
-    });
+  if (players.length > 2) {
+    if (lastToPlay(nextPlayers, game)) {
+      nextPlayers = nextPlayers.map((p, i) => {
+        return { ...p, isActive: true };
+      });
+    }
   }
 
   return nextPlayers;

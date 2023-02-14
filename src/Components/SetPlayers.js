@@ -30,6 +30,7 @@ function SetPlayers({ players, setPlayers, previousPath }) {
                 redo: false,
                 isActive: true,
                 hasDef: false,
+                try: 0,
                 stats: {
                   nbDef: 0,
                   nbFailedDef: 0,

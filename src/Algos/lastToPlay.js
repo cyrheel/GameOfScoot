@@ -9,7 +9,7 @@ function lastToPlay(players, game) {
       stillActive++;
     }
   }
-  return stillActive ? false : true;
+  return stillActive === 0 ? true : false;
 }
 
 export default lastToPlay;

@@ -1,6 +1,7 @@
 import incrementLap from "./incrementLap.js";
 import manageLetters from "./manageLetters.js";
 import manageStatus from "./manageStatus.js";
+import manageTry from "./manageTry.js";
 import getDefiner from "./getDefiner.js";
 import getNextAction from "./getNextAction.js";
 import getNextPlayer from "./getNextPlayer.js";
@@ -10,7 +11,7 @@ function nextLap(game, setGame, players, setPlayers, currResponse) {
   // Game
   const definer = getDefiner(game, currResponse);
   const nextAction = getNextAction(players, game, currResponse);
-  const idx = getNextPlayer(nextAction, game, definer, players.length);
+  const idx = getNextPlayer(nextAction, game, definer, players);
 
   const nextGameOptions = {
     ...game,
@@ -21,15 +22,21 @@ function nextLap(game, setGame, players, setPlayers, currResponse) {
   };
 
   // Players
-  const statuedPlayers = manageStatus(players, game, definer);
-  const letteredStatuedPlayers = manageLetters(
-    statuedPlayers,
-    game,
-    currResponse
-  );
+  const tryedPlayers = manageTry(game, players, currResponse);
+  const statuedPlayers = manageStatus(players, game, definer, currResponse);
+  const letteredPlayers = manageLetters(players, game, currResponse);
+
+  const nextPlayers = players.map((p, i) => {
+    return {
+      ...p,
+      try: tryedPlayers[i].try,
+      isActive: statuedPlayers[i].isActive,
+      letter: letteredPlayers[i].letter,
+    };
+  });
 
   // Set next lap
-  setPlayers(letteredStatuedPlayers);
+  setPlayers(nextPlayers);
   setGame(incrementLap(nextGameOptions));
 }
 

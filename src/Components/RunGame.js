@@ -48,6 +48,9 @@ function RunGame() {
     <GameContainer>
       <LapInfos>
         <p id="currentlap">Tour n°{game.lap}</p>
+        {game.currentAction === "copy" && (
+          <p>Try n°{players[game.currentPlayerId].try + 1}</p>
+        )}
         <p id="currentplayer">
           C'est le tour de {players[game.currentPlayerId].name}
         </p>

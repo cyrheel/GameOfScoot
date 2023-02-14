@@ -1,8 +1,10 @@
+import lastTry from "./lastTry.js";
+
 function manageLetters(players, game, currResponse) {
   // return players with letters updated
   const { currentAction, currentPlayerId } = game;
   if (currentAction === "copy") {
-    if (!currResponse) {
+    if (!currResponse && lastTry(players, game)) {
       const nextPlayers = players.map((p, i) => {
         if (i === currentPlayerId) {
           const nextLetters =

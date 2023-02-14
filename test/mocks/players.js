@@ -6,6 +6,7 @@ export const playersMulti = [
     letter: "",
     redo: false,
     isActive: true,
+    try: 0,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,
@@ -21,6 +22,7 @@ export const playersMulti = [
     letter: "",
     redo: false,
     isActive: true,
+    try: 0,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,
@@ -36,6 +38,7 @@ export const playersMulti = [
     letter: "",
     redo: false,
     isActive: true,
+    try: 0,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,
@@ -51,6 +54,7 @@ export const playersMulti = [
     letter: "",
     redo: false,
     isActive: true,
+    try: 0,
     stats: {
       nbDef: 0,
       nbFailedDef: 0,
