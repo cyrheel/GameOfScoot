@@ -23,13 +23,12 @@ function SetPlayers({ players, setPlayers, previousPath }) {
             const newPlayers = [
               ...players,
               {
-                id: players.length,
                 name: `Player ${players.length + 1}`,
                 position: players.length + 1,
                 letter: "",
+                try: 2,
                 redo: false,
-                isActive: true,
-                hasDef: false,
+                hasDefine: false,
                 stats: {
                   nbDef: 0,
                   nbFailedDef: 0,
