@@ -1,11 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import style from "styled-components";
 
-import nextLap from "../Algos/nextLap.js";
 import PlayerContext from "../Context/PlayerContext.js";
 import GameContext from "../Context/GameContext.js";
-
-import Actions from "./Actions.js";
 
 // Const
 const GameContainer = style.div`
@@ -32,6 +29,180 @@ const BtnContainer = style.div`
 function RunGame() {
   const { game, setGame } = useContext(GameContext);
   const { players, setPlayers } = useContext(PlayerContext);
+  const [currPlayerId, setCurrPlayerId] = useState(0);
+  const [action, setAction] = useState("define");
+  const [playersToCopy, setPlayersToCopy] = useState([]);
+
+  function handleYes() {
+    if (action === "define") {
+      setActionToCopy();
+    } else {
+      setPlayersAndUpdateCurrId();
+    }
+  }
+
+  function setActionToCopy() {
+    setAction("copy");
+    setPlayersToCopy(players.filter((player, index) => index !== currPlayerId));
+    setCurrPlayerId(0);
+    setPlayers(
+      players.map((element) => {
+        if (element.name === players[currPlayerId].name) {
+          return { ...element, hasDefined: true };
+        } else {
+          return element;
+        }
+      })
+    );
+  }
+
+  function setPlayersAndUpdateCurrId() {
+    const nextPlayers = playersToCopy.filter(
+      (player, index) => index !== currPlayerId
+    );
+    if (nextPlayers.length === 0) {
+      selectNextDefiner();
+    } else {
+      updatePlayerInfo(nextPlayers);
+    }
+  }
+
+  function selectNextDefiner() {
+    if (lastToDefine()) {
+      const resetedPlayers = players.map((element) => {
+        return { ...element, hasDefined: false };
+      });
+      setAction("define");
+      setCurrPlayerId(0);
+      setPlayersToCopy([]);
+      setPlayers(resetedPlayers);
+    } else {
+      let nextDefiner = null;
+      players.some((el, id) => {
+        nextDefiner = id;
+        return !el.hasDefined;
+      });
+      setAction("define");
+      setCurrPlayerId(nextDefiner ?? 0);
+      setPlayersToCopy([]);
+    }
+  }
+
+  function updatePlayerInfo(nextPlayers) {
+    setCurrPlayerId((currPlayerId + 1) % nextPlayers.length);
+    setPlayersToCopy(nextPlayers);
+  }
+
+  function handleNo() {
+    if (action === "define") {
+      handleDefine();
+    } else {
+      const stillHaveTry = playersToCopy[currPlayerId].try !== 1;
+      if (stillHaveTry) {
+        handleTryUpdatedPlayers();
+      } else {
+        handleNoMoreTry();
+      }
+    }
+  }
+
+  function handleDefine() {
+    if (lastToDefine()) {
+      const resetedPlayers = players.map((element) => {
+        return { ...element, hasDefined: false };
+      });
+      setPlayers(resetedPlayers);
+      setCurrPlayerId(0);
+    } else {
+      const nextPlayers = players.map((element) => {
+        if (element.name === players[currPlayerId].name) {
+          return { ...element, hasDefined: true };
+        } else {
+          return element;
+        }
+      });
+      let nextDefiner = null;
+      nextPlayers.some((el, id) => {
+        nextDefiner = id;
+        return !el.hasDefined;
+      });
+      setPlayers(nextPlayers);
+      setCurrPlayerId(nextDefiner ?? 0);
+    }
+  }
+
+  function handleTryUpdatedPlayers() {
+    const tryUpadtedPlayers = playersToCopy.map((el, i) => {
+      if (el.name === playersToCopy[currPlayerId].name) {
+        return { ...el, try: el.try - 1 };
+      } else {
+        return el;
+      }
+    });
+    setPlayersToCopy(tryUpadtedPlayers);
+    setCurrPlayerId(currPlayerId);
+  }
+
+  function handleNoMoreTry() {
+    const nextPlayers = playersToCopy.filter(
+      (player, index) => index !== currPlayerId
+    );
+    const letteredPlayers = players.map((el, i) => {
+      if (el.name === playersToCopy[currPlayerId].name) {
+        return {
+          ...el,
+          letter: el.letter + game.targetWord[el.letter.length],
+        };
+      } else {
+        return el;
+      }
+    });
+    if (nextPlayers.length === 0) {
+      handleEndOfRound(letteredPlayers);
+    } else {
+      handleNextPlayer(letteredPlayers, nextPlayers);
+    }
+  }
+
+  function handleEndOfRound(letteredPlayers) {
+    if (lastToDefine()) {
+      const resetedPlayers = letteredPlayers.map((element) => {
+        return { ...element, hasDefined: false };
+      });
+      setAction("define");
+      setCurrPlayerId(0);
+      setPlayersToCopy([]);
+      setPlayers(resetedPlayers);
+    } else {
+      let nextDefiner = null;
+      players.some((el, id) => {
+        nextDefiner = id;
+        return !el.hasDefined;
+      });
+      setPlayers(letteredPlayers);
+      setAction("define");
+      setCurrPlayerId(nextDefiner ?? 0);
+    }
+  }
+
+  function handleNextPlayer(letteredPlayers, nextPlayers) {
+    setPlayers(letteredPlayers);
+    setPlayersToCopy(nextPlayers);
+    setCurrPlayerId((currPlayerId + 1) % nextPlayers.length);
+  }
+
+  function lastToDefine() {
+    const playersWithoutCurr = players.filter(
+      (el) => el.name !== players[currPlayerId].name
+    );
+    let stillActive = 0;
+    for (const player of playersWithoutCurr) {
+      if (!player.hasDefined) {
+        stillActive++;
+      }
+    }
+    return stillActive === 0 ? true : false;
+  }
 
   useEffect(() => {
     for (const player of players) {
@@ -47,25 +218,27 @@ function RunGame() {
   return (
     <GameContainer>
       <LapInfos>
-        <p id="currentlap">Tour n°{game.lap}</p>
-        <p id="currentplayer">
-          C'est le tour de {players[game.currentPlayerId].name}
-        </p>
+        <p>Tour n°{game.lap}</p>
+        {action === "define" ? (
+          <p>C'est le tour de {players[currPlayerId].name}</p>
+        ) : (
+          <>
+            <p>C'est le tour de {playersToCopy[currPlayerId].name}</p>
+            <p>Il reste {playersToCopy[currPlayerId].try} try</p>
+          </>
+        )}
       </LapInfos>
-      <Actions />
+      <p>
+        Action:
+        {action === "define"
+          ? "Le tricks a été défini ?"
+          : "Le tricks a été copié ?"}
+      </p>
       <BtnContainer>
-        <button
-          id="YES"
-          onClick={() => nextLap(game, setGame, players, setPlayers, true)}
-          style={{ width: "50%" }}
-        >
+        <button id="YES" onClick={handleYes} style={{ width: "50%" }}>
           Oui
         </button>
-        <button
-          id="NO"
-          onClick={() => nextLap(game, setGame, players, setPlayers, false)}
-          style={{ width: "50%" }}
-        >
+        <button id="NO" onClick={handleNo} style={{ width: "50%" }}>
           Non
         </button>
       </BtnContainer>
