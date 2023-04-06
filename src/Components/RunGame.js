@@ -1,24 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
-import style from "styled-components";
+import styled from "styled-components";
 
 import PlayerContext from "../Context/PlayerContext.js";
 import GameContext from "../Context/GameContext.js";
 import { CustomBtn } from "../Style/style.js";
 
 // Const
-const GameContainer = style.div`
+const GameContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
 `;
-const LapInfos = style.div`
+const LapInfos = styled.div`
   display: flex;
   width: 100%;
   height: 20%;
   justify-content: space-around;
 `;
-const BtnContainer = style.div`
+const BtnContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -26,8 +26,8 @@ const BtnContainer = style.div`
   align-items: center;
   justify-content: space-around;
 `;
-const Action = style.h2`
-  color: #FAF0CA;
+const Action = styled.h2`
+  color: #faf0ca;
   margin: 0;
   padding: 2%;
   font-size: 125%;

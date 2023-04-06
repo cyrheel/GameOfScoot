@@ -1,13 +1,13 @@
 import React from "react";
-import style from "styled-components";
+import styled from "styled-components";
 
 import GameInfo from "../Components/GameInfo.js";
 import RunGame from "../Components/RunGame.js";
-import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
+import { PageWrapper, Header } from "../Style/style.js";
 import GoBackBtn from "../Components/GoBackButton.js";
 import RestartButton from "../Components/RestartButton.js";
 
-const InfoWrapper = style.div`
+const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 95%;
@@ -16,7 +16,7 @@ const InfoWrapper = style.div`
   padding: 1%;
 `;
 
-const GameWrapper = style.div`
+const GameWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 95%;

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import style from "styled-components";
+// TODO: replace by NavLink, in SetQuickGamePage.js too
+import styled from "styled-components";
 
 import GoBackBtn from "../Components/GoBackButton.js";
 import NbOfTry from "../Components/NbOfTry.js";
@@ -11,7 +12,7 @@ import GameContext from "../Context/GameContext.js";
 import PlayersContext from "../Context/PlayerContext.js";
 import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
 
-const Body = style.div`
+const Body = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

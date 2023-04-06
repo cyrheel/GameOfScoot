@@ -1,18 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import style, { keyframes } from "styled-components";
+import React, { useState } from "react";
+import t from "prop-types";
+import styled, { keyframes } from "styled-components";
 
-import { CustomBtn, PageWrapper } from "../Style/style.js";
+import { CustomBtn, CustomNavLink, PageWrapper } from "../Style/style.js";
 
-const Body = style.div`
+const Body = styled.div`
   display: flex;
-  flex-flow: column;  
+  flex-flow: column;
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
 `;
-const ButtonWrapper = style.div`
+const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 75%;
@@ -38,31 +38,69 @@ const TitleAnimation = keyframes`{
   }
 };
 `;
-const CustomTitle = style.h1`
+const CustomTitle = styled.h1`
   user-select: none;
-  color: #F4D35E;
-  font-family: 'Nabla', cursive;
-  animation: ${TitleAnimation} 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  color: #f4d35e;
+  font-family: "Nabla", cursive;
+  animation: ${TitleAnimation} 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+`;
+const PopUpBG = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: rgb(0, 0, 0, 0.7);
+  z-index: 2;
+`;
+const PopUpContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  height: 75%;
+  background: #0d3b66;
+  border-radius: 10px;
+  text-align: center;
 `;
 
+function PopUp({ setOpen }) {
+  return (
+    <PopUpBG>
+      <PopUpContainer>
+        <button onClick={() => setOpen(false)} style={{ width: "10%" }}>
+          x
+        </button>
+        <p>More to come {"<3"}</p>
+      </PopUpContainer>
+    </PopUpBG>
+  );
+}
+
 function HomePage() {
-  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
   return (
     <PageWrapper>
       <Body>
+        {open && <PopUp setOpen={setOpen} />}
         <CustomTitle>Game Of O.U.T</CustomTitle>
         <ButtonWrapper>
-          <CustomBtn
-            id="play"
-            onClick={() => navigate("/choose-game", { replace: true })}
-          >
+          <CustomNavLink id="play" to={"/choose-game"}>
             Play
+          </CustomNavLink>
+          <CustomBtn id="about" onClick={() => setOpen(true)}>
+            About
           </CustomBtn>
-          <CustomBtn id="about">About</CustomBtn>
         </ButtonWrapper>
       </Body>
     </PageWrapper>
   );
 }
+
+PopUp.propTypes = {
+  setOpen: t.func,
+};
 
 export default HomePage;

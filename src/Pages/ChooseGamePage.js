@@ -1,11 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import style from "styled-components";
+import styled from "styled-components";
 
-import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
+import { PageWrapper, Header, CustomNavLink } from "../Style/style.js";
 import GoBackBtn from "../Components/GoBackButton.js";
 
-const ButtonWrapper = style.div`
+const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -15,25 +14,18 @@ const ButtonWrapper = style.div`
 `;
 
 function ChooseGamePage() {
-  const navigate = useNavigate();
   return (
     <PageWrapper>
       <Header>
         <GoBackBtn destination={"/"} />
       </Header>
       <ButtonWrapper>
-        <CustomBtn
-          id="classicmode"
-          onClick={() => navigate("/set-quick-game", { replace: true })}
-        >
+        <CustomNavLink id="classicmode" to={"/set-quick-game"}>
           Classic
-        </CustomBtn>
-        <CustomBtn
-          id="custommode"
-          onClick={() => navigate("/set-game", { replace: true })}
-        >
+        </CustomNavLink>
+        <CustomNavLink id="custommode" to={"/set-game"}>
           Custom
-        </CustomBtn>
+        </CustomNavLink>
       </ButtonWrapper>
     </PageWrapper>
   );

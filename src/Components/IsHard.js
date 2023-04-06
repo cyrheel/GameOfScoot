@@ -1,4 +1,5 @@
 import React from "react";
+import t from "prop-types";
 
 import { InputContainer, Label } from "../Style/style.js";
 
@@ -16,5 +17,10 @@ function IsHard({ isHard, setIsHard }) {
     </InputContainer>
   );
 }
+
+IsHard.propTypes = {
+  isHard: t.bool,
+  setIsHard: t.func,
+};
 
 export default IsHard;
