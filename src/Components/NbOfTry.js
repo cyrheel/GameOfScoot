@@ -1,4 +1,5 @@
 import React from "react";
+import t from "prop-types";
 import styled from "styled-components";
 
 import { InputContainer, Label } from "../Style/style.js";
@@ -24,5 +25,10 @@ function NbOfTry({ tries, setTries }) {
     </InputContainer>
   );
 }
+
+NbOfTry.propTypes = {
+  tries: t.number,
+  setTries: t.func,
+};
 
 export default NbOfTry;

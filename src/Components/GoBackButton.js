@@ -1,4 +1,5 @@
 import React from "react";
+import t from "prop-types";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -17,10 +18,14 @@ const CustomNavLink = styled(NavLink)`
 
 function GoBackBtn({ destination }) {
   return (
-    <CustomNavLink to={destination}>
-      <img src={SVG} />
+    <CustomNavLink to={destination} id="goback">
+      <img src={SVG} alt="SVG" />
     </CustomNavLink>
   );
 }
+
+GoBackBtn.propTypes = {
+  destination: t.string,
+};
 
 export default GoBackBtn;

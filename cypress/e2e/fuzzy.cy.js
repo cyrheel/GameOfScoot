@@ -30,7 +30,7 @@ describe("Classic Game", () => {
   });
   describe("Fuzzy Classic Game 10 Players", () => {
     it("should not be fucked up on random clicks (200)", () => {
-      cy.get("#goback").click();
+      cy.visit("http://127.0.0.1:3000/set-game");
       for (let i = 0; i < 8; i++) {
         cy.get("#addPlayer").click();
       }

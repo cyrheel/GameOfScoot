@@ -1,4 +1,5 @@
 import React from "react";
+import t from "prop-types";
 
 import { InputContainer, Label, TextInput } from "../Style/style.js";
 
@@ -18,5 +19,10 @@ function GameName({ gameName, setGameName }) {
     </InputContainer>
   );
 }
+
+GameName.propTypes = {
+  gameName: t.string,
+  setGameName: t.func,
+};
 
 export default GameName;

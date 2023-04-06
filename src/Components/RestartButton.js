@@ -19,6 +19,7 @@ function RestartButton() {
   const { setGame } = useContext(GameContext);
   return (
     <SVGContainer
+      id="restartgame"
       onClick={() => {
         const nextPlayers = players.map((p, i) => {
           return {
@@ -34,7 +35,7 @@ function RestartButton() {
         });
       }}
     >
-      <img src={SVG} />
+      <img src={SVG} alt="SVG" />
     </SVGContainer>
   );
 }

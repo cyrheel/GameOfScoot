@@ -1,36 +1,55 @@
-import style from "styled-components";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-export const PageWrapper = style.div`
+export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100vh;
-  background: #0D3B66;
+  background: #0d3b66;
 `;
 
-export const Header = style.div`
+export const Header = styled.div`
   display: flex;
   width: 95%;
   padding: 2%;
   gap: 10px;
 `;
 
-export const CustomBtn = style.button`
+export const CustomBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   min-width: 50px;
   border: none;
   border-radius: 4px;
-  color: #FAF0CA;
-  background: #EE964B;
+  color: #faf0ca;
+  background: #ee964b;
   padding-bottom: 2%;
   margin: 0;
   font-size: 110%;
-  font-family: 'Labrada', serif;
+  font-family: "Labrada", serif;
 `;
 
-export const InputContainer = style.div`
+export const CustomNavLink = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 50px;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  color: #faf0ca;
+  background: #ee964b;
+  padding-bottom: 2%;
+  padding-left: 1%;
+  padding-right: 1%;
+  margin: 0;
+  font-size: 110%;
+  font-family: "Labrada", serif;
+`;
+
+export const InputContainer = styled.div`
   display: flex;
   width: 100%;
   height: 60px;
@@ -39,16 +58,16 @@ export const InputContainer = style.div`
   align-items: center;
 `;
 
-export const Label = style.p`
-  color: #FAF0CA;
+export const Label = styled.p`
+  color: #faf0ca;
   font-size: 110%;
 `;
 
-export const TextInput = style.input`
+export const TextInput = styled.input`
   border: none;
-  background: #FAF0CA;
+  background: #faf0ca;
   font-weight: bold;
-  font-family: 'Labrada', serif;
+  font-family: "Labrada", serif;
   padding: 1%;
   border-radius: 3px;
 `;

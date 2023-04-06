@@ -1,9 +1,10 @@
 import React from "react";
-import style from "styled-components";
+import t from "prop-types";
+import styled from "styled-components";
 
 import { Label, TextInput } from "../Style/style.js";
 
-const InputContainer = style.div`
+const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -11,7 +12,7 @@ const InputContainer = style.div`
   justify-content: flex-start;
   align-items: center;
 `;
-const PlayerContainer = style.div`
+const PlayerContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -19,32 +20,30 @@ const PlayerContainer = style.div`
   overflow: auto;
   gap: 5px;
 `;
-const CustomButton = style.button`
+const CustomButton = styled.button`
   border: none;
   height: 20px;
   border-radius: 4px;
-  background: #EE964B;
-  font-family: 'Labrada', serif;
+  background: #ee964b;
+  font-family: "Labrada", serif;
 `;
-const ItemContainer = style.div`
+const ItemContainer = styled.div`
   display: flex;
   width: 100%;
   height: 30px;
 `;
-
+const Header = styled.div`
+  display: flex;
+  max-height: 10%;
+  width: 100%;
+  align-items: center;
+  gap: 30px;
+  padding: 2%;
+`;
 function SetPlayers({ players, setPlayers }) {
   return (
     <InputContainer>
-      <div
-        style={{
-          display: "flex",
-          maxHeight: "10%",
-          width: "100%",
-          gap: "30px",
-          alignItems: "center",
-          padding: "2%",
-        }}
-      >
+      <Header>
         <Label>Players: </Label>
         <CustomButton
           onClick={() => {
@@ -73,7 +72,7 @@ function SetPlayers({ players, setPlayers }) {
         >
           Add Player
         </CustomButton>
-      </div>
+      </Header>
       <PlayerContainer>
         {players.map((player, idx) => {
           return (
@@ -109,5 +108,10 @@ function SetPlayers({ players, setPlayers }) {
     </InputContainer>
   );
 }
+
+SetPlayers.propTypes = {
+  players: t.array,
+  setPlayers: t.func,
+};
 
 export default SetPlayers;
