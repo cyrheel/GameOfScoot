@@ -28,7 +28,7 @@ function GamePage() {
   return (
     <PageWrapper>
       <Header>
-        <GoBackBtn destination={"/set-game"} />
+        <GoBackBtn destination={"/"} />
         <RestartButton />
       </Header>
       <GameWrapper>

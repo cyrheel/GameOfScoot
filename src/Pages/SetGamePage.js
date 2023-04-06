@@ -47,10 +47,7 @@ function SetGamePage() {
             // }
             setGame({
               ...game,
-              totalPlayer: players.length,
-              currentPlayerId: 0,
               isRunning: true,
-              nbOfTry: tries,
               isHard: isHard,
               targetWord: gameName,
             });
