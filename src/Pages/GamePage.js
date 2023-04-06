@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import style from "styled-components";
 
-import PlayersContext, { initialPlayers } from "../Context/PlayerContext.js";
-import GameContext, { initialGame } from "../Context/GameContext.js";
 import GameInfo from "../Components/GameInfo.js";
 import RunGame from "../Components/RunGame.js";
 import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
+import GoBackBtn from "../Components/GoBackButton.js";
+import RestartButton from "../Components/RestartButton.js";
 
 const InfoWrapper = style.div`
   display: flex;
@@ -26,41 +25,11 @@ const GameWrapper = style.div`
 `;
 
 function GamePage() {
-  const navigate = useNavigate();
-  const { players, setPlayers } = useContext(PlayersContext);
-  const { setGame } = useContext(GameContext);
-
   return (
     <PageWrapper>
       <Header>
-        <CustomBtn
-          id="goback"
-          onClick={() => navigate("/set-game", { replace: true })}
-        >
-          {"<-"}
-        </CustomBtn>
-        <button
-          id="restartgame"
-          onClick={() => {
-            const nextPlayers = players.map((p, i) => {
-              return {
-                ...initialPlayers.players[0],
-                name: p.name,
-                position: p.position,
-              };
-            });
-            setPlayers(nextPlayers);
-            setGame({
-              ...initialGame.game,
-              totalPlayer: players.length,
-              currentPlayer: players[0],
-              currentPlayerId: 0,
-              isRunning: true,
-            });
-          }}
-        >
-          Restart Game
-        </button>
+        <GoBackBtn destination={"/set-game"} />
+        <RestartButton />
       </Header>
       <GameWrapper>
         <RunGame />

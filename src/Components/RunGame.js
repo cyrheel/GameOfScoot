@@ -3,6 +3,7 @@ import style from "styled-components";
 
 import PlayerContext from "../Context/PlayerContext.js";
 import GameContext from "../Context/GameContext.js";
+import { CustomBtn } from "../Style/style.js";
 
 // Const
 const GameContainer = style.div`
@@ -14,6 +15,7 @@ const GameContainer = style.div`
 const LapInfos = style.div`
   display: flex;
   width: 100%;
+  height: 20%;
   justify-content: space-around;
 `;
 const BtnContainer = style.div`
@@ -23,6 +25,12 @@ const BtnContainer = style.div`
   height: 100%;
   align-items: center;
   justify-content: space-around;
+`;
+const Action = style.h2`
+  color: #FAF0CA;
+  margin: 0;
+  padding: 2%;
+  font-size: 125%;
 `;
 
 // Component
@@ -218,29 +226,24 @@ function RunGame() {
   return (
     <GameContainer>
       <LapInfos>
-        <p>Tour n°{game.lap}</p>
         {action === "define" ? (
-          <p>C'est le tour de {players[currPlayerId].name}</p>
+          <Action>
+            {players[currPlayerId].name}, le tricks à été défini ?
+          </Action>
         ) : (
-          <>
-            <p>C'est le tour de {playersToCopy[currPlayerId].name}</p>
-            <p>Il reste {playersToCopy[currPlayerId].try} try</p>
-          </>
+          <Action>
+            {playersToCopy[currPlayerId].name}, il te reste{" "}
+            {playersToCopy[currPlayerId].try} try, le tricks à été copié ?
+          </Action>
         )}
       </LapInfos>
-      <p>
-        Action:
-        {action === "define"
-          ? "Le tricks a été défini ?"
-          : "Le tricks a été copié ?"}
-      </p>
       <BtnContainer>
-        <button id="YES" onClick={handleYes} style={{ width: "50%" }}>
+        <CustomBtn id="YES" onClick={handleYes} style={{ width: "50%" }}>
           Oui
-        </button>
-        <button id="NO" onClick={handleNo} style={{ width: "50%" }}>
+        </CustomBtn>
+        <CustomBtn id="NO" onClick={handleNo} style={{ width: "50%" }}>
           Non
-        </button>
+        </CustomBtn>
       </BtnContainer>
     </GameContainer>
   );

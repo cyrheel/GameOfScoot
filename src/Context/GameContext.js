@@ -3,8 +3,7 @@ import { createContext } from "react";
 export const initialGame = {
   game: {
     isRunning: false,
-    lap: 0,
-    targetWord: "SCOOT",
+    targetWord: "OUT",
     isHard: false,
     allowRedo: false,
   },
