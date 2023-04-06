@@ -45,13 +45,31 @@ function SetGamePage() {
             // if (targetWord === "" || player[O].name === "") {
             // throw error and display whats wrong
             // }
-            setGame({
-              ...game,
-              isRunning: true,
-              isHard: isHard,
-              targetWord: gameName,
-            });
-            navigate("/game", { replace: true });
+            if (isHard) {
+              const nextPlayers = players.map((element) => {
+                return { ...element, try: 1 };
+              });
+              setPlayers(nextPlayers);
+              setGame({
+                ...game,
+                isRunning: true,
+                isHard: isHard,
+                targetWord: gameName,
+              });
+              navigate("/game", { replace: true });
+            } else {
+              const nextPlayers = players.map((element) => {
+                return { ...element, try: tries };
+              });
+              setPlayers(nextPlayers);
+              setGame({
+                ...game,
+                isRunning: true,
+                isHard: isHard,
+                targetWord: gameName,
+              });
+              navigate("/game", { replace: true });
+            }
           }}
         >
           Start Game !
