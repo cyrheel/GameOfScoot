@@ -228,21 +228,21 @@ function RunGame() {
       <LapInfos>
         {action === "define" ? (
           <Action>
-            {players[currPlayerId].name}, le tricks à été défini ?
+            {players[currPlayerId].name}, the trick have been defined ?
           </Action>
         ) : (
           <Action>
-            {playersToCopy[currPlayerId].name}, il te reste{" "}
-            {playersToCopy[currPlayerId].try} try, le tricks à été copié ?
+            {playersToCopy[currPlayerId].name}, you got{" "}
+            {playersToCopy[currPlayerId].try} try, the trick have been copied ?
           </Action>
         )}
       </LapInfos>
       <BtnContainer>
         <CustomBtn id="YES" onClick={handleYes} style={{ width: "50%" }}>
-          Oui
+          Yes
         </CustomBtn>
         <CustomBtn id="NO" onClick={handleNo} style={{ width: "50%" }}>
-          Non
+          No
         </CustomBtn>
       </BtnContainer>
     </GameContainer>
