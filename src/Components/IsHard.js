@@ -1,9 +1,11 @@
 import React from "react";
 
+import { InputContainer, Label } from "../Style/style.js";
+
 function IsHard({ isHard, setIsHard }) {
   return (
-    <>
-      <p>Hard Mode : {isHard.toString()}</p>
+    <InputContainer>
+      <Label>Hard Mode:</Label>
       <input
         type="checkbox"
         value={isHard}
@@ -11,7 +13,7 @@ function IsHard({ isHard, setIsHard }) {
           setIsHard(!isHard);
         }}
       ></input>
-    </>
+    </InputContainer>
   );
 }
 

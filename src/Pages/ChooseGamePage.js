@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import style from "styled-components";
 
-import { PageWrapper, Header } from "../Style/style.js";
+import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
+import GoBackBtn from "../Components/GoBackButton.js";
 
 const ButtonWrapper = style.div`
   display: flex;
@@ -18,28 +19,21 @@ function ChooseGamePage() {
   return (
     <PageWrapper>
       <Header>
-        <button
-          id="goback"
-          onClick={() => navigate("/", { replace: true })}
-          style={{ width: "15%" }}
-        >
-          {"<-"}
-        </button>
+        <GoBackBtn destination={"/"} />
       </Header>
       <ButtonWrapper>
-        <button
+        <CustomBtn
           id="classicmode"
-          onClick={() => navigate("/set-game?from=classic", { replace: true })}
+          onClick={() => navigate("/set-quick-game", { replace: true })}
         >
-          Classic Mode
-        </button>
-        <button
+          Classic
+        </CustomBtn>
+        <CustomBtn
           id="custommode"
-          onClick={() => navigate("/set-game?from=custom", { replace: true })}
+          onClick={() => navigate("/set-game", { replace: true })}
         >
-          Custom Mode
-        </button>
-        <button id="readrules">Read Classic Rules</button>
+          Custom
+        </CustomBtn>
       </ButtonWrapper>
     </PageWrapper>
   );

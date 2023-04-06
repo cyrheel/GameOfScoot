@@ -7,10 +7,10 @@ import GameContext from "../Context/GameContext.js";
 const GameInfoW = style.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
 `;
-
 const PlayerContainer = style.div`
   display: flex;
   flex-direction: column;
@@ -18,7 +18,6 @@ const PlayerContainer = style.div`
   max-height: 80%;
   overflow: auto;
 `;
-
 const PlayerDiv = style.div`
   display: flex;
   width: 100%;
@@ -31,15 +30,24 @@ function GameInfo() {
   return (
     <>
       <GameInfoW>
-        <p>You are playing Game of {game.targetWord}</p>
-        <p>Score Board</p>
+        <p style={{ color: "#FAF0CA", fontSize: "110%" }}>
+          Score Board for Game of {game.targetWord}
+        </p>
         <PlayerContainer>
           {players.map((p, i) => {
             return (
               <PlayerDiv key={i}>
-                <p id={`name${i}`}>{p.name}</p>
-                <p id={`letter${i}`}>
-                  {p.letter === "" ? "No letters" : p.letter}
+                <p id={`name${i}`} style={{ color: "#FAF0CA" }}>
+                  {p.name}
+                </p>
+                <p
+                  id={`letter${i}`}
+                  style={{
+                    color: "#F4D35E",
+                    fontFamily: "'Nabla', cursive",
+                  }}
+                >
+                  {p.letter === "" ? "#" : p.letter}
                 </p>
               </PlayerDiv>
             );

@@ -1,24 +1,52 @@
 import React from "react";
 import style from "styled-components";
 
-import { initialPlayers } from "../Context/PlayerContext.js";
+import { Label, TextInput } from "../Style/style.js";
 
+const InputContainer = style.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 350px;
+  justify-content: flex-start;
+  align-items: center;
+`;
 const PlayerContainer = style.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   max-height: 80%;
   overflow: auto;
+  gap: 5px;
+`;
+const CustomButton = style.button`
+  border: none;
+  height: 20px;
+  border-radius: 4px;
+  background: #EE964B;
+  font-family: 'Labrada', serif;
+`;
+const ItemContainer = style.div`
+  display: flex;
+  width: 100%;
+  height: 30px;
 `;
 
-function SetPlayers({ players, setPlayers, previousPath }) {
-  if (previousPath === "classic") {
-    players = initialPlayers.players;
-  }
+function SetPlayers({ players, setPlayers }) {
   return (
-    <>
-      {previousPath !== "classic" && (
-        <button
+    <InputContainer>
+      <div
+        style={{
+          display: "flex",
+          maxHeight: "10%",
+          width: "100%",
+          gap: "30px",
+          alignItems: "center",
+          padding: "2%",
+        }}
+      >
+        <Label>Players: </Label>
+        <CustomButton
           onClick={() => {
             const newPlayers = [
               ...players,
@@ -44,14 +72,14 @@ function SetPlayers({ players, setPlayers, previousPath }) {
           style={{ width: "25%" }}
         >
           Add Player
-        </button>
-      )}
+        </CustomButton>
+      </div>
       <PlayerContainer>
         {players.map((player, idx) => {
           return (
-            <div key={idx}>
-              <input
-                placeholder={player.name}
+            <ItemContainer key={idx}>
+              <TextInput
+                placeholder={"Enter " + player.name + " name..."}
                 onChange={(e) => {
                   const nextPlayers = players.map((p, i) => {
                     if (i === idx) {
@@ -74,11 +102,11 @@ function SetPlayers({ players, setPlayers, previousPath }) {
                   X
                 </button>
               )}
-            </div>
+            </ItemContainer>
           );
         })}
       </PlayerContainer>
-    </>
+    </InputContainer>
   );
 }
 
