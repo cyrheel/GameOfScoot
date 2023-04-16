@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import PlayersContext, { initialPlayers } from "./Context/PlayerContext.js";
 import GameContext, { initialGame } from "./Context/GameContext.js";

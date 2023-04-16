@@ -220,9 +220,6 @@ function RunGame() {
     }
   }, [game, players, game.targetWord, setGame]);
 
-  if (!game.isRunning) {
-    return <p id="endGame">End Game :/</p>;
-  }
   return (
     <GameContainer>
       <LapInfos>

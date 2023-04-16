@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
+import GameContext from "../Context/GameContext.js";
 import GameInfo from "../Components/GameInfo.js";
 import RunGame from "../Components/RunGame.js";
-import { PageWrapper, Header } from "../Style/style.js";
+import EndGame from "../Components/EndGame.js";
 import GoBackBtn from "../Components/GoBackButton.js";
 import RestartButton from "../Components/RestartButton.js";
+import { PageWrapper, Header } from "../Style/style.js";
 
 const InfoWrapper = styled.div`
   display: flex;
@@ -25,18 +27,26 @@ const GameWrapper = styled.div`
 `;
 
 function GamePage() {
+  const { game } = useContext(GameContext);
+
   return (
     <PageWrapper>
       <Header>
         <GoBackBtn destination={"/"} />
         <RestartButton />
       </Header>
-      <GameWrapper>
-        <RunGame />
-      </GameWrapper>
-      <InfoWrapper>
-        <GameInfo />
-      </InfoWrapper>
+      {game.isRunning ? (
+        <>
+          <GameWrapper>
+            <RunGame />
+          </GameWrapper>
+          <InfoWrapper>
+            <GameInfo />
+          </InfoWrapper>
+        </>
+      ) : (
+        <EndGame />
+      )}
     </PageWrapper>
   );
 }
