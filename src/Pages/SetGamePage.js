@@ -32,7 +32,7 @@ function SetGamePage() {
 
   useEffect(() => {
     setPlayers(initialPlayers.players);
-  }, []);
+  }, [setPlayers]);
 
   return (
     <PageWrapper>

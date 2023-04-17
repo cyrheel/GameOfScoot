@@ -227,7 +227,7 @@ function RunGame({ restart, setRestart }) {
       setPlayersToCopy([]);
       setRestart(false);
     }
-  }, [restart]);
+  }, [restart, setRestart]);
 
   return (
     <GameContainer>

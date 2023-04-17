@@ -41,7 +41,7 @@ function SetQuickGamePage() {
 
   useEffect(() => {
     setPlayers(initialPlayers.players);
-  }, []);
+  }, [setPlayers]);
 
   return (
     <PageWrapper>
