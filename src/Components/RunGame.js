@@ -34,7 +34,7 @@ const Action = styled.h2`
 `;
 
 // Component
-function RunGame() {
+function RunGame({ restart, setRestart }) {
   const { game, setGame } = useContext(GameContext);
   const { players, setPlayers } = useContext(PlayerContext);
   const [currPlayerId, setCurrPlayerId] = useState(0);
@@ -219,6 +219,15 @@ function RunGame() {
       }
     }
   }, [game, players, game.targetWord, setGame]);
+
+  useEffect(() => {
+    if (restart) {
+      setCurrPlayerId(0);
+      setAction("define");
+      setPlayersToCopy([]);
+      setRestart(false);
+    }
+  }, [restart]);
 
   return (
     <GameContainer>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
 import GameContext from "../Context/GameContext.js";
@@ -28,17 +28,18 @@ const GameWrapper = styled.div`
 
 function GamePage() {
   const { game } = useContext(GameContext);
+  const [restart, setRestart] = useState(false);
 
   return (
     <PageWrapper>
       <Header>
         <GoBackBtn destination={"/"} />
-        <RestartButton />
+        <RestartButton setRestart={setRestart} />
       </Header>
       {game.isRunning ? (
         <>
           <GameWrapper>
-            <RunGame />
+            <RunGame restart={restart} setRestart={setRestart} />
           </GameWrapper>
           <InfoWrapper>
             <GameInfo />

@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import PlayersContext from "../Context/PlayerContext.js";
+import PlayersContext, { initialPlayers } from "../Context/PlayerContext.js";
 import GameContext from "../Context/GameContext.js";
 import { PageWrapper, Header, CustomBtn, TextInput } from "../Style/style.js";
 import GoBackBtn from "../Components/GoBackButton.js";
@@ -38,6 +38,10 @@ function SetQuickGamePage() {
   const navigate = useNavigate();
   const { players, setPlayers } = useContext(PlayersContext);
   const { game, setGame } = useContext(GameContext);
+
+  useEffect(() => {
+    setPlayers(initialPlayers.players);
+  }, []);
 
   return (
     <PageWrapper>
