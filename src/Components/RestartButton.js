@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 
 import PlayersContext, { initialPlayers } from "../Context/PlayerContext.js";
-import GameContext, { initialGame } from "../Context/GameContext.js";
+import GameContext from "../Context/GameContext.js";
 import SVG from "../Images/arrow-counterclockwise.svg";
 
 const SVGContainer = styled.button`
@@ -14,9 +14,9 @@ const SVGContainer = styled.button`
   background: #f4d35e;
 `;
 
-function RestartButton() {
+function RestartButton({ setRestart }) {
   const { players, setPlayers } = useContext(PlayersContext);
-  const { setGame } = useContext(GameContext);
+  const { game, setGame } = useContext(GameContext);
   return (
     <SVGContainer
       id="restartgame"
@@ -26,13 +26,15 @@ function RestartButton() {
             ...initialPlayers.players[0],
             name: p.name,
             position: p.position,
+            try: p.try,
           };
         });
         setPlayers(nextPlayers);
         setGame({
-          ...initialGame.game,
+          ...game,
           isRunning: true,
         });
+        setRestart(true);
       }}
     >
       <img src={SVG} alt="SVG" />

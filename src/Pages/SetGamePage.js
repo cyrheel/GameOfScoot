@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // TODO: replace by NavLink, in SetQuickGamePage.js too
 import styled from "styled-components";
@@ -9,7 +9,7 @@ import IsHard from "../Components/IsHard.js";
 import GameName from "../Components/GameName.js";
 import SetPlayers from "../Components/SetPlayers.js";
 import GameContext from "../Context/GameContext.js";
-import PlayersContext from "../Context/PlayerContext.js";
+import PlayersContext, { initialPlayers } from "../Context/PlayerContext.js";
 import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
 
 const Body = styled.div`
@@ -29,6 +29,11 @@ function SetGamePage() {
   const [tries, setTries] = useState(2);
   const [isHard, setIsHard] = useState(false);
   const [gameName, setGameName] = useState("OUT");
+
+  useEffect(() => {
+    setPlayers(initialPlayers.players);
+  }, [setPlayers]);
+
   return (
     <PageWrapper>
       <Header>

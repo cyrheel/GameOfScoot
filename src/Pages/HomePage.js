@@ -3,6 +3,8 @@ import t from "prop-types";
 import styled, { keyframes } from "styled-components";
 
 import { CustomBtn, CustomNavLink, PageWrapper } from "../Style/style.js";
+import instaSVG from "../Images/instagram.svg";
+import emailSVG from "../Images/envelope.svg";
 
 const Body = styled.div`
   display: flex;
@@ -65,15 +67,62 @@ const PopUpContainer = styled.div`
   border-radius: 10px;
   text-align: center;
 `;
+const PopUpHeader = styled.div`
+  display: flex;
+  width: 100%;
+  height: 10%;
+  justify-content: flex-start;
+`;
+const PopUpBody = styled.div`
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 80%;
+  justify-content: flex-start;
+  align-items: center;
+`;
+const CloseBtn = styled.button`
+  display: flex;
+  height: 50%;
+  width: 10%;
+  justify-content: center;
+  align-items: center;
+  margin: 3%;
+  border: none;
+  border-radius: 10%;
+  background: white;
+`;
+const CustomA = styled.a`
+  width: 20%;
+  height: 10%;
+  padding: 5%;
+`;
+const CustomImg = styled.img`
+  width: 100%;
+`;
+const CustomP = styled.p`
+  margin: 0;
+  padding: 5%;
+`;
 
 function PopUp({ setOpen }) {
   return (
     <PopUpBG>
       <PopUpContainer>
-        <button onClick={() => setOpen(false)} style={{ width: "10%" }}>
-          x
-        </button>
-        <p>More to come {"<3"}</p>
+        <PopUpHeader>
+          <CloseBtn onClick={() => setOpen(false)}>x</CloseBtn>
+        </PopUpHeader>
+        <PopUpBody>
+          <CustomP>Want to send a message ?</CustomP>
+          <CustomP>Click one of the logo below</CustomP>
+          <CustomA href="mailto:skilfulgames@hotmail.com">
+            <CustomImg src={emailSVG} alt="svg" />
+          </CustomA>
+          <br />
+          <CustomA href="https://www.instagram.com/skilfulgames/">
+            <CustomImg src={instaSVG} alt="svg" />
+          </CustomA>
+        </PopUpBody>
       </PopUpContainer>
     </PopUpBG>
   );
