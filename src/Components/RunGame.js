@@ -33,6 +33,15 @@ const Action = styled.h2`
   font-size: 125%;
 `;
 
+function incrementStat(players, name, stat) {
+  return players.map((p) => {
+    if (p.name === name) {
+      return { ...p, stats: { ...p.stats, [stat]: p.stats[stat] + 1 } };
+    }
+    return p;
+  });
+}
+
 // Component
 function RunGame({ restart, setRestart }) {
   const { game, setGame } = useContext(GameContext);
@@ -40,6 +49,7 @@ function RunGame({ restart, setRestart }) {
   const [currPlayerId, setCurrPlayerId] = useState(0);
   const [action, setAction] = useState("define");
   const [playersToCopy, setPlayersToCopy] = useState([]);
+  const [definerName, setDefinerName] = useState("");
 
   function handleYes() {
     if (action === "define") {
@@ -53,15 +63,23 @@ function RunGame({ restart, setRestart }) {
     setAction("copy");
     setPlayersToCopy(players.filter((player, index) => index !== currPlayerId));
     setCurrPlayerId(0);
-    setPlayers(
-      players.map((element) => {
-        if (element.name === players[currPlayerId].name) {
-          return { ...element, hasDefined: true };
-        } else {
-          return element;
-        }
-      })
+    setDefinerName(players[currPlayerId].name);
+    let nextPlayers = players.map((element) => {
+      if (element.name === players[currPlayerId].name) {
+        return {
+          ...element,
+          hasDefined: true,
+        };
+      } else {
+        return element;
+      }
+    });
+    nextPlayers = incrementStat(
+      nextPlayers,
+      players[currPlayerId].name,
+      "nbDef"
     );
+    setPlayers(nextPlayers);
   }
 
   function setPlayersAndUpdateCurrId() {
@@ -77,9 +95,14 @@ function RunGame({ restart, setRestart }) {
 
   function selectNextDefiner() {
     if (lastToDefine()) {
-      const resetedPlayers = players.map((element) => {
+      let resetedPlayers = players.map((element) => {
         return { ...element, hasDefined: false };
       });
+      resetedPlayers = incrementStat(
+        resetedPlayers,
+        playersToCopy[currPlayerId].name,
+        "nbCopied"
+      );
       setAction("define");
       setCurrPlayerId(0);
       setPlayersToCopy([]);
@@ -90,13 +113,25 @@ function RunGame({ restart, setRestart }) {
         nextDefiner = id;
         return !el.hasDefined;
       });
+      const updatedPlayers = incrementStat(
+        players,
+        playersToCopy[currPlayerId].name,
+        "nbCopied"
+      );
       setAction("define");
       setCurrPlayerId(nextDefiner ?? 0);
       setPlayersToCopy([]);
+      setPlayers(updatedPlayers);
     }
   }
 
   function updatePlayerInfo(nextPlayers) {
+    const updatedPlayers = incrementStat(
+      players,
+      playersToCopy[currPlayerId].name,
+      "nbCopied"
+    );
+    setPlayers(updatedPlayers);
     setCurrPlayerId((currPlayerId + 1) % nextPlayers.length);
     setPlayersToCopy(nextPlayers);
   }
@@ -116,19 +151,42 @@ function RunGame({ restart, setRestart }) {
 
   function handleDefine() {
     if (lastToDefine()) {
-      const resetedPlayers = players.map((element) => {
-        return { ...element, hasDefined: false };
+      let resetedPlayers = players.map((element) => {
+        if (element.name === players[currPlayerId].name) {
+          return {
+            ...element,
+            hasDefined: false,
+          };
+        } else {
+          return {
+            ...element,
+            hasDefined: false,
+          };
+        }
       });
+      resetedPlayers = incrementStat(
+        resetedPlayers,
+        players[currPlayerId].name,
+        "nbFailedDef"
+      );
       setPlayers(resetedPlayers);
       setCurrPlayerId(0);
     } else {
-      const nextPlayers = players.map((element) => {
+      let nextPlayers = players.map((element) => {
         if (element.name === players[currPlayerId].name) {
-          return { ...element, hasDefined: true };
+          return {
+            ...element,
+            hasDefined: true,
+          };
         } else {
           return element;
         }
       });
+      nextPlayers = incrementStat(
+        nextPlayers,
+        players[currPlayerId].name,
+        "nbFailedDef"
+      );
       let nextDefiner = null;
       nextPlayers.some((el, id) => {
         nextDefiner = id;
@@ -147,6 +205,12 @@ function RunGame({ restart, setRestart }) {
         return el;
       }
     });
+    const updatedPlayers = incrementStat(
+      players,
+      playersToCopy[currPlayerId].name,
+      "nbFailedTry"
+    );
+    setPlayers(updatedPlayers);
     setPlayersToCopy(tryUpadtedPlayers);
     setCurrPlayerId(currPlayerId);
   }
@@ -155,7 +219,7 @@ function RunGame({ restart, setRestart }) {
     const nextPlayers = playersToCopy.filter(
       (player, index) => index !== currPlayerId
     );
-    const letteredPlayers = players.map((el, i) => {
+    let letteredPlayers = players.map((el, i) => {
       if (el.name === playersToCopy[currPlayerId].name) {
         return {
           ...el,
@@ -165,6 +229,11 @@ function RunGame({ restart, setRestart }) {
         return el;
       }
     });
+    letteredPlayers = incrementStat(
+      letteredPlayers,
+      definerName,
+      "nbLetterGiven"
+    );
     if (nextPlayers.length === 0) {
       handleEndOfRound(letteredPlayers);
     } else {
@@ -174,9 +243,14 @@ function RunGame({ restart, setRestart }) {
 
   function handleEndOfRound(letteredPlayers) {
     if (lastToDefine()) {
-      const resetedPlayers = letteredPlayers.map((element) => {
+      let resetedPlayers = letteredPlayers.map((element) => {
         return { ...element, hasDefined: false };
       });
+      resetedPlayers = incrementStat(
+        resetedPlayers,
+        playersToCopy[currPlayerId].name,
+        "nbFailedTry"
+      );
       setAction("define");
       setCurrPlayerId(0);
       setPlayersToCopy([]);
@@ -187,14 +261,24 @@ function RunGame({ restart, setRestart }) {
         nextDefiner = id;
         return !el.hasDefined;
       });
-      setPlayers(letteredPlayers);
+      const updatedPlayers = incrementStat(
+        letteredPlayers,
+        playersToCopy[currPlayerId].name,
+        "nbFailedTry"
+      );
+      setPlayers(updatedPlayers);
       setAction("define");
       setCurrPlayerId(nextDefiner ?? 0);
     }
   }
 
   function handleNextPlayer(letteredPlayers, nextPlayers) {
-    setPlayers(letteredPlayers);
+    const updatedPlayers = incrementStat(
+      letteredPlayers,
+      playersToCopy[currPlayerId].name,
+      "nbFailedTry"
+    );
+    setPlayers(updatedPlayers);
     setPlayersToCopy(nextPlayers);
     setCurrPlayerId((currPlayerId + 1) % nextPlayers.length);
   }
