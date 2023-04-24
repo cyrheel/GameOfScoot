@@ -41,7 +41,6 @@ const LetterAnimation = keyframes`{
 const Letters = styled.p`
   user-select: none;
   color: "#F4D35E";
-  font-family: "Nabla", cursive;
   animation: ${LetterAnimation} 0.2s cubic-bezier(0.23, 1, 0.32, 1) both;
 `;
 

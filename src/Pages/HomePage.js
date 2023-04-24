@@ -43,7 +43,6 @@ const TitleAnimation = keyframes`{
 const CustomTitle = styled.h1`
   user-select: none;
   color: #f4d35e;
-  font-family: "Nabla", cursive;
   animation: ${TitleAnimation} 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 `;
 const PopUpBG = styled.div`
@@ -61,7 +60,7 @@ const PopUpBG = styled.div`
 const PopUpContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 85%;
   height: 75%;
   background: #0d3b66;
   border-radius: 10px;
@@ -89,8 +88,9 @@ const CloseBtn = styled.button`
   align-items: center;
   margin: 3%;
   border: none;
+  border: 1.5px solid black;
   border-radius: 10%;
-  background: white;
+  background: #f4d35e;
 `;
 const CustomA = styled.a`
   width: 20%;
@@ -99,6 +99,10 @@ const CustomA = styled.a`
 `;
 const CustomImg = styled.img`
   width: 100%;
+  background: #f4d35e;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5%;
 `;
 const CustomP = styled.p`
   margin: 0;
