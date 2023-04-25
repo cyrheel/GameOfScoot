@@ -28,7 +28,7 @@ export const CustomBtn = styled.button`
   padding-bottom: 2%;
   margin: 0;
   font-size: 110%;
-  font-family: "Labrada", serif;
+  font-family: "DynaPuff", cursive;
 `;
 
 export const CustomNavLink = styled(NavLink)`
@@ -46,7 +46,6 @@ export const CustomNavLink = styled(NavLink)`
   padding-right: 1%;
   margin: 0;
   font-size: 110%;
-  font-family: "Labrada", serif;
 `;
 
 export const InputContainer = styled.div`
@@ -67,7 +66,7 @@ export const TextInput = styled.input`
   border: none;
   background: #faf0ca;
   font-weight: bold;
-  font-family: "Labrada", serif;
+  font-family: "DynaPuff", cursive;
   padding: 1%;
   border-radius: 3px;
 `;

@@ -63,19 +63,19 @@ const CustomKey = styled.p`
 function statLabelMapper(rdStr) {
   switch (rdStr) {
     case "nbDef": {
-      return "Nb of defined tricks";
+      return "Defined tricks";
     }
     case "nbFailedDef": {
-      return "Nb of not defined tricks";
+      return "Not defined tricks";
     }
     case "nbCopied": {
-      return "Nb of copied tricks";
+      return "Copied tricks";
     }
     case "nbFailedTry": {
-      return "Nb of failed try to copy";
+      return "Failed to copy tricks";
     }
     case "nbLetterGiven": {
-      return "Nb of given letters";
+      return "Letters given to others";
     }
     default: {
       return "";

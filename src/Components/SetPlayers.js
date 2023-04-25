@@ -25,7 +25,6 @@ const CustomButton = styled.button`
   height: 20px;
   border-radius: 4px;
   background: #ee964b;
-  font-family: "Labrada", serif;
 `;
 const ItemContainer = styled.div`
   display: flex;
