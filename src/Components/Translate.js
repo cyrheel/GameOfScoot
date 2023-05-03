@@ -9,7 +9,7 @@ function Translate({ children }) {
   if (preferences.language === "fr") {
     return constantes[children];
   }
-  return children;
+  return <>{children}</>;
 }
 
 Translate.propTypes = {
