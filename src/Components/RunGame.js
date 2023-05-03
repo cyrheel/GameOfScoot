@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 
+import Translate from "./Translate.js";
 import PlayerContext from "../Context/PlayerContext.js";
 import GameContext from "../Context/GameContext.js";
 import { CustomBtn } from "../Style/style.js";
@@ -318,21 +319,24 @@ function RunGame({ restart, setRestart }) {
       <LapInfos>
         {action === "define" ? (
           <Action>
-            {players[currPlayerId].name}, the trick have been defined ?
+            {players[currPlayerId].name + ", "}
+            <Translate>the trick have been imposed ?</Translate>
           </Action>
         ) : (
           <Action>
-            {playersToCopy[currPlayerId].name}, you got{" "}
-            {playersToCopy[currPlayerId].try} try, the trick have been copied ?
+            {playersToCopy[currPlayerId].name + ", "}
+            <Translate>you got </Translate>
+            {playersToCopy[currPlayerId].try}
+            <Translate> try, the trick have been copied ?</Translate>
           </Action>
         )}
       </LapInfos>
       <BtnContainer>
         <CustomBtn id="YES" onClick={handleYes} style={{ width: "50%" }}>
-          Yes
+          <Translate>Yes</Translate>
         </CustomBtn>
         <CustomBtn id="NO" onClick={handleNo} style={{ width: "50%" }}>
-          No
+          <Translate>No</Translate>
         </CustomBtn>
       </BtnContainer>
     </GameContainer>

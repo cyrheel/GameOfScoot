@@ -1,12 +1,15 @@
 import React from "react";
 import t from "prop-types";
 
+import Translate from "./Translate.js";
 import { InputContainer, Label } from "../Style/style.js";
 
 function IsHard({ isHard, setIsHard }) {
   return (
     <InputContainer>
-      <Label>Hard Mode:</Label>
+      <Label>
+        <Translate>Hard Mode:</Translate>
+      </Label>
       <input
         type="checkbox"
         value={isHard}

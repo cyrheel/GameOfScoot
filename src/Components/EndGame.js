@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
+import Translate from "./Translate.js";
 import PlayerContext from "../Context/PlayerContext.js";
 
 const Root = styled.div`
@@ -23,7 +24,7 @@ const StatsContainer = styled.div`
   display: flex;
   flex-flow: column;
   width: 90%;
-  height: 90%;
+  height: 95%;
   gap: 20px;
   align-items: center;
 `;
@@ -89,15 +90,20 @@ function Stats({ player }) {
   return (
     <StatRoot>
       <Header>
-        <CustomP>{player.name}'s Stats</CustomP>
+        <CustomP>{player.name}</CustomP>
         {player.letter.length > 0 && <CustomP>{player.letter}</CustomP>}
       </Header>
-      {keys.map((k, i) => (
-        <StatRow key={i}>
-          <CustomKey>{statLabelMapper(k)} :</CustomKey>
-          <CustomP>{values[i] ?? "N/A"}</CustomP>
-        </StatRow>
-      ))}
+      {keys.map((k, i) => {
+        const statLabel = statLabelMapper(k);
+        return (
+          <StatRow key={i}>
+            <CustomKey>
+              <Translate>{statLabel}</Translate>
+            </CustomKey>
+            <CustomP>{values[i] ?? "N/A"}</CustomP>
+          </StatRow>
+        );
+      })}
     </StatRoot>
   );
 }
@@ -106,7 +112,9 @@ function EndGame() {
   const { players } = useContext(PlayerContext);
   return (
     <Root>
-      <Title id="endGame">End Game :/</Title>
+      <Title id="endGame">
+        <Translate>Stats</Translate>
+      </Title>
       <StatsContainer>
         {players.map((p, i) => (
           <Stats key={i} player={p} />

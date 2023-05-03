@@ -25,7 +25,7 @@ export const CustomBtn = styled.button`
   border-radius: 4px;
   color: #faf0ca;
   background: #ee964b;
-  padding-bottom: 2%;
+  padding: 2%;
   margin: 0;
   font-size: 110%;
   font-family: "DynaPuff", cursive;
@@ -41,9 +41,7 @@ export const CustomNavLink = styled(NavLink)`
   border-radius: 4px;
   color: #faf0ca;
   background: #ee964b;
-  padding-bottom: 2%;
-  padding-left: 1%;
-  padding-right: 1%;
+  padding: 2%;
   margin: 0;
   font-size: 110%;
 `;

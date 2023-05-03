@@ -4,8 +4,10 @@ import styled from "styled-components";
 
 import PlayersContext, { initialPlayers } from "../Context/PlayerContext.js";
 import GameContext from "../Context/GameContext.js";
+import PreferenceContext from "../Context/PreferenceContext.js";
 import { PageWrapper, Header, CustomBtn, TextInput } from "../Style/style.js";
 import GoBackBtn from "../Components/GoBackButton.js";
+import Translate from "../Components/Translate.js";
 
 const Body = styled.div`
   display: flex;
@@ -38,6 +40,7 @@ function SetQuickGamePage() {
   const navigate = useNavigate();
   const { players, setPlayers } = useContext(PlayersContext);
   const { game, setGame } = useContext(GameContext);
+  const { preferences } = useContext(PreferenceContext);
 
   useEffect(() => {
     setPlayers(initialPlayers.players);
@@ -49,13 +52,19 @@ function SetQuickGamePage() {
         <GoBackBtn destination={"/choose-game"} />
       </Header>
       <Body>
-        <h3 style={{ color: "#FAF0CA" }}>1v1, 2 try, 3 letters</h3>
+        <h3 style={{ color: "#FAF0CA" }}>
+          <Translate>1v1, 2 try, 3 letters</Translate>
+        </h3>
         <PlayerContainer>
           {players.map((player, idx) => {
             return (
               <ItemContainer key={idx}>
                 <TextInput
-                  placeholder={player.name + " name..."}
+                  placeholder={
+                    preferences.language === "en"
+                      ? "Player name..."
+                      : "Nom du joueur..."
+                  }
                   onChange={(e) => {
                     const nextPlayers = players.map((p, i) => {
                       if (i === idx) {
@@ -89,7 +98,7 @@ function SetQuickGamePage() {
             navigate("/game", { replace: true });
           }}
         >
-          Start Game !
+          <Translate>Start Game !</Translate>
         </CustomBtn>
       </Body>
     </PageWrapper>

@@ -3,6 +3,7 @@ import t from "prop-types";
 import styled from "styled-components";
 
 import { InputContainer, Label } from "../Style/style.js";
+import Translate from "./Translate.js";
 
 const CustomBtn = styled.button`
   border: none;
@@ -14,7 +15,9 @@ const CustomBtn = styled.button`
 function NbOfTry({ tries, setTries }) {
   return (
     <InputContainer>
-      <Label>Nb Of Try:</Label>
+      <Label>
+        <Translate>Nb Of Try:</Translate>
+      </Label>
       <Label>{tries}</Label>
       {tries !== 1 && (
         <CustomBtn onClick={() => setTries(tries === 1 ? 1 : tries - 1)}>

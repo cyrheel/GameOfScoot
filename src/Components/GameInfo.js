@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components";
 
+import Translate from "./Translate.js";
 import PlayerContext from "../Context/PlayerContext.js";
 import GameContext from "../Context/GameContext.js";
 
@@ -40,7 +41,7 @@ const LetterAnimation = keyframes`{
 `;
 const Letters = styled.p`
   user-select: none;
-  color: "#F4D35E";
+  color: #f4d35e;
   animation: ${LetterAnimation} 0.2s cubic-bezier(0.23, 1, 0.32, 1) both;
 `;
 
@@ -50,7 +51,8 @@ function GameInfo() {
   return (
     <GameInfoW>
       <p style={{ color: "#FAF0CA", fontSize: "110%" }}>
-        Score Board for Game of {game.targetWord}
+        <Translate>Score Board for </Translate>
+        Game of {game.targetWord}
       </p>
       <PlayerContainer>
         {players.map((p, i) => {
