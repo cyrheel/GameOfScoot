@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { PageWrapper, Header, CustomNavLink } from "../Style/style.js";
 import GoBackBtn from "../Components/GoBackButton.js";
+import Translate from "../Components/Translate.js";
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -21,10 +22,10 @@ function ChooseGamePage() {
       </Header>
       <ButtonWrapper>
         <CustomNavLink id="classicmode" to={"/set-quick-game"}>
-          Classic
+          <Translate>Classic</Translate>
         </CustomNavLink>
         <CustomNavLink id="custommode" to={"/set-game"}>
-          Custom
+          <Translate>Custom</Translate>
         </CustomNavLink>
       </ButtonWrapper>
     </PageWrapper>

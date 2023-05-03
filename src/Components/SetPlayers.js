@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import t from "prop-types";
 import styled from "styled-components";
 
+import Translate from "./Translate.js";
 import { Label, TextInput } from "../Style/style.js";
+import PreferenceContext from "../Context/PreferenceContext.js";
 
 const InputContainer = styled.div`
   display: flex;
@@ -40,10 +42,13 @@ const Header = styled.div`
   padding: 2%;
 `;
 function SetPlayers({ players, setPlayers }) {
+  const { preferences } = useContext(PreferenceContext);
   return (
     <InputContainer>
       <Header>
-        <Label>Players: </Label>
+        <Label>
+          <Translate>Players:</Translate>
+        </Label>
         <CustomButton
           onClick={() => {
             const newPlayers = [
@@ -67,9 +72,9 @@ function SetPlayers({ players, setPlayers }) {
             setPlayers(newPlayers);
           }}
           id="addPlayer"
-          style={{ width: "25%" }}
+          style={{ fontFamily: "DynaPuff, cursive", width: "45%" }}
         >
-          Add Player
+          <Translate>Add Player</Translate>
         </CustomButton>
       </Header>
       <PlayerContainer>
@@ -77,7 +82,11 @@ function SetPlayers({ players, setPlayers }) {
           return (
             <ItemContainer key={idx}>
               <TextInput
-                placeholder={"Enter " + player.name + " name..."}
+                placeholder={
+                  preferences.language === "en"
+                    ? "Player name..."
+                    : "Nom du joueur..."
+                }
                 onChange={(e) => {
                   const nextPlayers = players.map((p, i) => {
                     if (i === idx) {

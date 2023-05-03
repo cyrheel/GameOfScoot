@@ -2,11 +2,14 @@ import React from "react";
 import t from "prop-types";
 
 import { InputContainer, Label, TextInput } from "../Style/style.js";
+import Translate from "./Translate.js";
 
 function GameName({ gameName, setGameName }) {
   return (
     <InputContainer>
-      <Label>Target Word :</Label>
+      <Label>
+        <Translate>Target Word :</Translate>
+      </Label>
       <TextInput
         type="text"
         value={gameName}
@@ -14,7 +17,7 @@ function GameName({ gameName, setGameName }) {
         onChange={(e) => {
           setGameName(e.target.value.toUpperCase());
         }}
-        style={{ width: "50%" }}
+        style={{ width: "45%" }}
       ></TextInput>
     </InputContainer>
   );

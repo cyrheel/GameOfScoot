@@ -9,6 +9,7 @@ import IsHard from "../Components/IsHard.js";
 import GameName from "../Components/GameName.js";
 import SetPlayers from "../Components/SetPlayers.js";
 import GameContext from "../Context/GameContext.js";
+import Translate from "../Components/Translate.js";
 import PlayersContext, { initialPlayers } from "../Context/PlayerContext.js";
 import { PageWrapper, Header, CustomBtn } from "../Style/style.js";
 
@@ -78,7 +79,7 @@ function SetGamePage() {
             }
           }}
         >
-          Start Game !
+          <Translate>Start Game !</Translate>
         </CustomBtn>
       </Body>
     </PageWrapper>
