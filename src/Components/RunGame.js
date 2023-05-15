@@ -51,6 +51,7 @@ function RunGame({ restart, setRestart }) {
   const [action, setAction] = useState("define");
   const [playersToCopy, setPlayersToCopy] = useState([]);
   const [definerName, setDefinerName] = useState("");
+  const [eliminatedPlayers, setEliminatedPlayers] = useState([]);
 
   function handleYes() {
     if (action === "define") {
@@ -300,10 +301,18 @@ function RunGame({ restart, setRestart }) {
   useEffect(() => {
     for (const player of players) {
       if (player.letter === game.targetWord) {
-        setGame({ ...game, isRunning: false });
+        const eliminated = [...eliminatedPlayers, player];
+        const nextPlayers = players.filter((p) => p.name !== player.name);
+        if (nextPlayers.length === 1) {
+          setPlayers([...players, ...eliminatedPlayers]);
+          setGame({ ...game, isRunning: false });
+        } else {
+          setEliminatedPlayers(eliminated);
+          setPlayers(nextPlayers);
+        }
       }
     }
-  }, [game, players, game.targetWord, setGame]);
+  }, [game, players, game.targetWord, eliminatedPlayers, setGame, setPlayers]);
 
   useEffect(() => {
     if (restart) {
