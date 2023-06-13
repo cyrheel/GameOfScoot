@@ -11,3 +11,4 @@ services:
 
 volumes:
   static-files-prod:
+
